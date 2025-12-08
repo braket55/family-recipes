@@ -1,0 +1,399 @@
+/* assets/css/base.css */
+
+/* Basic reset-ish things */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;                /*  make body at least full viewport height */
+  display: flex;                     /*  so we can push footer to bottom */
+  flex-direction: column;
+  font-family: var(--font-body, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+  background: var(--bg);             /* theme background now covers whole viewport */
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* Let main content expand and push footer down */
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+  flex: 1;                           /*  this is new: main grows to fill space */
+}
+
+
+
+
+/* Header / Footer */
+.site-footer {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.site-header {
+  width: 100%;
+  padding: 1rem;
+
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  background: var(--bg);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+
+  /* content layout */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.site-title {
+  font-family: var(--font-heading, inherit);
+  font-size: 1.6rem;
+  letter-spacing: var(--site-title-tracking, 0.03em);
+  text-transform: var(--site-title-transform, none);
+  margin: 0;
+}
+
+.site-footer p {
+  font-size: 0.875rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Buttons / Inputs */
+button,
+input,
+a {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.9rem;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+  box-shadow: var(--button-shadow, none);
+}
+
+button:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: var(--button-shadow-hover, none);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  padding: 0.35rem 0.9rem;
+  font-size: 0.9rem;
+  background: var(--surface-elevated);
+  color: var(--text);
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.back-button:hover {
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+  box-shadow: var(--button-shadow-hover, none);
+}
+
+.back-button:active {
+  transform: translateY(0);
+}
+
+.home-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;               /* adjust size as needed */
+  text-decoration: none;
+  margin-right: 0.75rem;           /* spacing from title */
+  border-radius: 50%;
+  padding: 0.25rem 0.4rem;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text);
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.home-icon:hover {
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+  box-shadow: var(--button-shadow-hover, none);
+}
+
+.home-icon:active {
+  transform: translateY(0);
+}
+
+.units-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.units-toggle span {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.units-btn {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
+
+.units-btn.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+/* Search section */
+.search-section {
+  margin: 0.5rem 0 1rem;
+}
+
+#search-input {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Category filter buttons */
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.category-btn {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+}
+
+.category-btn.active {
+  border-color: var(--accent);
+}
+
+/* Recipe grid */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* On wider screens, show 2–3 columns */
+@media (min-width: 640px) {
+  .recipe-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  .recipe-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Recipe cards */
+.recipe-card {
+  background: var(--surface);
+  border-radius: 0.9rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.recipe-card-title {
+  font-family: var(--font-heading, inherit);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.recipe-card-meta {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.recipe-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: var(--chip-bg);
+  color: var(--chip-text);
+}
+
+/* Card link */
+.recipe-card-link {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--accent);
+  align-self: flex-start;
+}
+
+/* General recipe page layout */
+#recipe-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.recipe-section {
+  padding: 0.9rem 1rem;
+  border-radius: 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+}
+
+.recipe-section h2 {
+  font-family: var(--font-heading, inherit);
+  margin-bottom: 0.4rem;
+  margin-top: 0;
+}
+
+.recipe-section ul,
+.recipe-section ol {
+  margin: 0.25rem 0 0 1.2rem;
+  padding-left: 0;
+}
+
+.breadcrumb {
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.breadcrumb ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.breadcrumb-item,
+.breadcrumb li {
+  color: var(--breadcrumb-text, var(--text));
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  color: var(--breadcrumb-link, var(--accent));
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb li + li::before {
+  content: "›";
+  margin: 0 0.2rem;
+  opacity: 0.7;
+}
+
+/* Nutrition section containers */
+#nutrition-macros,
+#nutrition-carbs,
+#nutrition-vitamins,
+#nutrition-minerals,
+#nutrition-lipids {
+  margin-bottom: 0.75rem;
+}
+
+#nutrition-macros h3,
+#nutrition-carbs h3,
+#nutrition-vitamins h3,
+#nutrition-minerals h3,
+#nutrition-lipids h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+/* Badges for dietary flags */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  margin-right: 0.25rem;
+  margin-top: 0.25rem;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+}
+
+/* Family ratings list */
+#family-ratings ul {
+  margin: 0.3rem 0 0 1.2rem;
+  padding-left: 0;
+}
+
+/* Links */
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  text-decoration: underline;
+}

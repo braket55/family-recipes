@@ -1,0 +1,116 @@
+/* assets/css/theme-fantasy.css */
+
+body.theme-fantasy {
+  /* Fonts */
+  --font-body: "Georgia", "Times New Roman", serif;
+  --font-heading: "Georgia", "Times New Roman", serif;
+
+  /* Background & surfaces */
+  --bg: radial-gradient(circle at top, #fff8e3 0, #f7ecd3 35%, #f2e0bf 100%);
+  --text: #3b2f2f;
+
+  --surface: #fffaf0;
+  --surface-elevated: #fbe9c6;
+
+  --border-subtle: #e0d2b3;
+
+  --accent: #9c4221;
+  --accent-soft: #f6e0b5;
+  --accent-text: #3b2f2f;
+
+  --chip-bg: #f6e0b5;
+  --chip-text: #3b2f2f;
+
+  --badge-bg: #e9d8a6;
+  --badge-text: #3b2f2f;
+
+  --shadow-soft: 0 8px 18px rgba(0, 0, 0, 0.12);
+
+  --button-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  --button-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  --site-title-tracking: 0.04em;
+  --site-title-transform: none;
+}
+
+/* Slight paper grain overlay */
+body.theme-fantasy::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.05) 1px, transparent 0),
+    radial-gradient(circle at 3px 3px, rgba(0, 0, 0, 0.02) 1px, transparent 0);
+  background-size: 6px 6px, 8px 8px;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  z-index: -1;
+}
+
+/* Header / footer as gentle "book" bands */
+body.theme-fantasy .site-header,
+body.theme-fantasy .site-footer {
+  border-bottom: 1px solid rgba(160, 130, 90, 0.5);
+}
+
+body.theme-fantasy .site-footer {
+  border-top: 1px solid rgba(160, 130, 90, 0.5);
+}
+
+/* Recipe cards: parchment panels */
+body.theme-fantasy .recipe-card {
+  background: linear-gradient(135deg, #fff8e3 0%, #fffaf0 40%, #fbe9c6 100%);
+  border-radius: 1rem;
+  border: 1px solid rgba(160, 130, 90, 0.6);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Section cards */
+body.theme-fantasy .recipe-section {
+  background: linear-gradient(135deg, #fff8e3 0%, #fffaf0 40%, #fbe9c6 100%);
+  border-radius: 1rem;
+  border: 1px solid rgba(160, 130, 90, 0.6);
+}
+
+/* Tags + badges look like little scroll labels */
+body.theme-fantasy .tag {
+  border: 1px solid rgba(160, 130, 90, 0.75);
+}
+
+body.theme-fantasy .badge {
+  border: 1px solid rgba(160, 130, 90, 0.75);
+}
+
+/* Links */
+body.theme-fantasy a {
+  color: #9c4221;
+}
+
+
+/* Fantasy: headings feel a bit more storybook */
+body.theme-fantasy .recipe-section h2 {
+  font-style: italic;
+  letter-spacing: 0.04em;
+}
+
+/* Fantasy: inner dashed border like a page inset */
+body.theme-fantasy .recipe-section {
+  position: relative;
+}
+
+body.theme-fantasy .recipe-section::before {
+  content: "";
+  position: absolute;
+  inset: 0.5rem;
+  border-radius: 0.9rem;
+  border: 1px dashed rgba(160, 130, 90, 0.45);
+  pointer-events: none;
+}
+
+/* Fantasy breadcrumb colors */
+body.theme-fantasy {
+  --breadcrumb-text: #5b4636;
+  --breadcrumb-link: #9c4221;
+}
+

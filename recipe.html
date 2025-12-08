@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe</title>
+
+    <!-- Base + Themes -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/theme-scifi.css">
+    <link rel="stylesheet" href="assets/css/theme-fantasy.css">
+</head>
+
+<body class="theme-scifi">
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="index.html" class="home-icon" aria-label="Home">🏠</a>
+            <h1 class="site-title" id="recipe-title">Loading...</h1>
+            <button id="theme-toggle">Switch Theme</button>
+        </div>
+    </header>
+
+    <main id="recipe-container">
+
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol id="breadcrumb-list">
+                <li class="breadcrumb-item">
+                    <a href="index.html">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a id="breadcrumb-category-link" href="#"></a>
+                </li>
+                <li class="breadcrumb-item" id="breadcrumb-current" aria-current="page"></li>
+            </ol>
+        </nav>
+
+
+        <!-- Tags + Dietary Flags -->
+        <section id="recipe-tags"></section>
+        <section id="recipe-dietary-flags"></section>
+
+        <!-- Family Ratings -->
+        <section id="family-ratings"></section>
+
+        <!-- Ingredients -->
+        <section class="recipe-section">
+            <div class="units-toggle">
+                <span>Units:</span>
+                <button type="button" class="units-btn" data-units="metric">Metric</button>
+                <button type="button" class="units-btn" data-units="imperial">US</button>
+                <button type="button" class="units-btn" data-units="kitchen">Kitchen</button>
+            </div>
+
+            <h2>Ingredients</h2>
+            <ul id="ingredients-list"></ul>
+        </section>
+
+
+        <!-- Steps -->
+        <section class="recipe-section">
+            <h2>Steps</h2>
+            <ol id="steps-list"></ol>
+        </section>
+
+        <!-- Nutrition -->
+        <section class="recipe-section">
+            <h2>Nutrition</h2>
+
+            <div id="nutrition-macros"></div>
+            <div id="nutrition-carbs"></div>
+            <div id="nutrition-vitamins"></div>
+            <div id="nutrition-minerals"></div>
+            <div id="nutrition-lipids"></div>
+        </section>
+
+        <!-- Notes -->
+        <section class="recipe-section">
+            <h2>Notes</h2>
+            <ul id="notes-list"></ul>
+        </section>
+
+        <!-- Back link -->
+        <p>
+            <a href="index.html" class="back-button">
+                &larr; Back to all recipes
+            </a>
+        </p>
+
+
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Family Recipe Collection</p>
+    </footer>
+
+    <!-- JS Files -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/recipes.js"></script>
+
+</body>
+
+</html>

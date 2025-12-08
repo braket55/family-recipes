@@ -1,0 +1,289 @@
+{
+  "id": "blueberry-breakfast-bar",
+  "name": "Blueberry Breakfast Bar",
+  "category": "breakfast",
+  "servings": 12,
+  "prep_time_minutes": 15,
+  "cook_time_minutes": 35,
+  "source": "Website Modification",
+  "tags": [
+    "family favorite",
+    "healthy"
+  ],
+  "dietary_flags": {
+    "dairy_free": false,
+    "gluten_free": false,
+    "vegetarian": true,
+    "vegan": false,
+    "nut_free": true,
+    "soy_free": true,
+    "egg_free": false,
+    "low_sugar": false,
+    "high_protein": false
+  },
+  "family_ratings": [
+    {
+      "name": "Ryan",
+      "stars": 5,
+      "comment": "Perfect for breakfast meal prep."
+    },
+    {
+      "name": "Jess",
+      "stars": 5,
+      "comment": "Love the blueberry and chocolate combo!"
+    },
+    {
+      "name": "UV",
+      "stars": 0,
+      "comment": "Not chicken or rice. Hiss."
+    },
+    {
+      "name": "Petra",
+      "stars": 1,
+      "comment": "Not bread or paper. Deeply suspicious."
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "Unsweetened applesauce",
+      "type": "wet",
+      "amounts": {
+        "metric": {
+          "quantity": 113,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 4,
+          "unit": "oz"
+        },
+        "kitchen": "1/2 cup unsweetened applesauce"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Dried wild blueberries",
+      "type": "dry",
+      "amounts": {
+        "metric": {
+          "quantity": 140,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 5,
+          "unit": "oz"
+        },
+        "kitchen": "3/4 cup dried wild blueberries"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Milk",
+      "type": "wet",
+      "amounts": {
+        "metric": {
+          "quantity": 414,
+          "unit": "ml"
+        },
+        "imperial": {
+          "quantity": 14,
+          "unit": "fl oz"
+        },
+        "kitchen": "1 3/4 cup milk"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Eggs",
+      "type": "wet",
+      "amounts": {
+        "metric": {
+          "quantity": 2,
+          "unit": ""
+        },
+        "imperial": {
+          "quantity": 2,
+          "unit": ""
+        },
+        "kitchen": "2 large eggs"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Pure maple syrup",
+      "type": "wet",
+      "amounts": {
+        "metric": {
+          "quantity": 120,
+          "unit": "ml"
+        },
+        "imperial": {
+          "quantity": 4,
+          "unit": "fl oz"
+        },
+        "kitchen": "1/2 cup pure maple syrup"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Unsalted butter",
+      "type": "wet",
+      "amounts": {
+        "metric": {
+          "quantity": 57,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 2,
+          "unit": "oz"
+        },
+        "kitchen": "1/4 cup (1/2 stick) unsalted butter"
+      },
+      "notes": "Melted and slightly cooled"
+    },
+    {
+      "item": "Whole rolled oats",
+      "type": "dry",
+      "amounts": {
+        "metric": {
+          "quantity": 240,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 8.5,
+          "unit": "oz"
+        },
+        "kitchen": "3 cups whole rolled oats"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Baking powder",
+      "type": "dry",
+      "amounts": {
+        "metric": {
+          "quantity": 4,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 0.14,
+          "unit": "oz"
+        },
+        "kitchen": "1 tsp baking powder"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Ground cinnamon",
+      "type": "dry",
+      "amounts": {
+        "metric": {
+          "quantity": 3,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 0.11,
+          "unit": "oz"
+        },
+        "kitchen": "1 tsp ground cinnamon"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Pure vanilla extract",
+      "type": "wet",
+      "amounts": {
+        "metric": {
+          "quantity": 5,
+          "unit": "ml"
+        },
+        "imperial": {
+          "quantity": 0.17,
+          "unit": "fl oz"
+        },
+        "kitchen": "1 tsp pure vanilla extract"
+      },
+      "notes": "Add an 'oops' amount if desired"
+    },
+    {
+      "item": "Salt",
+      "type": "dry",
+      "amounts": {
+        "metric": {
+          "quantity": 2,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 0.07,
+          "unit": "oz"
+        },
+        "kitchen": "1/4 tsp salt"
+      },
+      "notes": ""
+    },
+    {
+      "item": "100% dark chocolate",
+      "type": "dry",
+      "amounts": {
+        "metric": {
+          "quantity": 56,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 2,
+          "unit": "oz"
+        },
+        "kitchen": "2 oz finely chopped"
+      },
+      "notes": "Use chocolate bar and chop into fine chunks"
+    }
+  ],
+  "nutrition": {
+    "serving_size": "1 bar",
+    "macros": {
+      "calories": 270,
+      "protein_g": 5.9,
+      "net_carbs_g": 42.3,
+      "fat_g": 7.4,
+      "fiber_g": null
+    },
+    "carbohydrates": {
+      "total_carbs_g": null,
+      "fiber_g": null,
+      "sugars_g": null,
+      "starch_g": null,
+      "added_sugars_g": null
+    },
+    "vitamins": {
+      "vitamin_a_mcg": null,
+      "vitamin_c_mg": null,
+      "vitamin_d_mcg": null,
+      "b12_mcg": null,
+      "folate_mcg": null
+    },
+    "minerals": {
+      "calcium_mg": null,
+      "iron_mg": null,
+      "magnesium_mg": null,
+      "potassium_mg": null,
+      "sodium_mg": null
+    },
+    "lipids": {
+      "cholesterol_mg": null
+    }
+  },
+  "steps": [
+    "Adjust oven rack to middle position.",
+    "Preheat oven to 175°C (350°F).",
+    "Spray a 23×33 cm (9×13 inch) baking dish with non-stick cooking spray.",
+    "Whisk all wet ingredients together in a large bowl.",
+    "Add dry ingredients to the wet mixture and stir until just combined.",
+    "Bake for 35 minutes until edges are golden brown and the center is set.",
+    "Let cool for 5 minutes and serve warm, or cool fully and cut into bars.",
+    "Cut into 12 bars.",
+    "Store in an airtight container in the refrigerator for up to 7 days or freeze for up to 3 months."
+  ],
+  "notes": [
+    "These are delicious!",
+    "Try dried cranberries too."
+  ]
+}

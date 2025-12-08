@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Recipes</title>
+
+    <!-- Base + Themes -->
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/theme-scifi.css">
+    <link rel="stylesheet" href="assets/css/theme-fantasy.css">
+</head>
+
+<body class="theme-scifi">
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="home-icon" href="index.html">🏠</a>
+            <h1>Family Recipe Collection</h1>
+            <button id="theme-toggle">Switch Theme</button>
+        </div>
+    </header>
+
+
+    <main>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol>
+                <li class="breadcrumb-item" aria-current="page"><a href="index.html">Home</a></li>
+            </ol>
+        </nav>
+
+        <!-- Search Bar -->
+        <section class="search-section">
+            <input type="text" id="search-input" placeholder="Search recipes..." aria-label="Search recipes">
+        </section>
+
+        <!-- Category Filters (Breakfast, Lunch, etc.) -->
+        <section class="category-filter">
+            <button class="category-btn" data-category="all">All</button>
+            <button class="category-btn" data-category="breakfast">Breakfast</button>
+            <button class="category-btn" data-category="lunch">Lunch</button>
+            <button class="category-btn" data-category="dinner">Dinner</button>
+            <button class="category-btn" data-category="dessert">Dessert</button>
+            <button class="category-btn" data-category="snack">Snack</button>
+        </section>
+
+        <!-- Recipe Cards will be inserted here by JS -->
+        <section id="recipe-list" class="recipe-grid">
+            <!-- JS will inject recipe cards here -->
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; 2025 Family Recipe Collection</p>
+    </footer>
+
+    <!-- JS Files -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/recipes.js"></script>
+
+</body>
+
+</html>

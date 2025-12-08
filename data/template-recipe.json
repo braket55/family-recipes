@@ -1,0 +1,105 @@
+{
+  "id": "RECIPE-ID-HERE",                      // must match the filename (e.g., "chili-con-carne")
+  "name": "Recipe Name Here",
+  "category": "breakfast | lunch | dinner | dessert | snack",
+  "servings": 0,
+  "prep_time_minutes": 0,
+  "cook_time_minutes": 0,
+  "source": "",                                // "Family Recipe", "Grandma's cookbook", URL, etc.
+
+  "tags": [
+    // e.g., "easy", "meal prep", "high protein"
+  ],
+
+  "dietary_flags": {
+    "dairy_free": false,
+    "gluten_free": false,
+    "vegetarian": false,
+    "vegan": false,
+    "nut_free": false,
+    "soy_free": false,
+    "egg_free": false,
+    "low_sugar": false,
+    "high_protein": false
+  },
+
+  "family_ratings": [
+    // Example:
+    // {
+    //   "name": "Ryan",
+    //   "stars": 5,
+    //   "comment": "Love this one!"
+    // }
+  ],
+
+  "ingredients": [
+    {
+      "item": "Ingredient name",
+      "type": "dry | wet",                     // optional, used for display or filtering later
+      "amounts": {
+        "metric": {
+          "quantity": 0,
+          "unit": "g | ml | etc"
+        },
+        "imperial": {
+          "quantity": 0,
+          "unit": "oz | fl oz | etc"
+        },
+        "kitchen": "1 cup | 2 tbsp | 3 slices | etc"
+      },
+      "notes": ""                               // optional
+    }
+  ],
+
+  "nutrition": {
+    "serving_size": "",                        // e.g., "1 bar", "1 cup", etc.
+
+    "macros": {
+      "calories": null,
+      "protein_g": null,
+      "net_carbs_g": null,
+      "fat_g": null,
+      "fiber_g": null
+    },
+
+    "carbohydrates": {
+      "total_carbs_g": null,
+      "fiber_g": null,
+      "sugars_g": null,
+      "starch_g": null,
+      "added_sugars_g": null
+    },
+
+    "vitamins": {
+      "vitamin_a_mcg": null,
+      "vitamin_c_mg": null,
+      "vitamin_d_mcg": null,
+      "b12_mcg": null,
+      "folate_mcg": null
+    },
+
+    "minerals": {
+      "calcium_mg": null,
+      "iron_mg": null,
+      "magnesium_mg": null,
+      "potassium_mg": null,
+      "sodium_mg": null
+    },
+
+    "lipids": {
+      "cholesterol_mg": null
+    }
+  },
+
+  "steps": [
+    // "Step 1...",
+    // "Step 2...",
+    // etc.
+  ],
+
+  "notes": [
+    // "Try this variation...",
+    // "Reduce sugar if needed...",
+    // etc.
+  ]
+}
