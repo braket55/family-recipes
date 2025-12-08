@@ -240,35 +240,33 @@
   "nutrition": {
     "serving_size": "1 bar",
     "macros": {
-      "calories": 270,
-      "protein_g": 5.9,
-      "net_carbs_g": 42.3,
-      "fat_g": 7.4,
-      "fiber_g": null
-    },
-    "carbohydrates": {
-      "total_carbs_g": null,
-      "fiber_g": null,
-      "sugars_g": null,
-      "starch_g": null,
-      "added_sugars_g": null
+      "calories": "270 kcal - 11% DV",
+      "protein": "5.9 g - 9% DV",
+      "net_carbs": "42.3 g - 68% DV",
+      "fat": "7.4 g - 24% DV"
     },
     "vitamins": {
-      "vitamin_a_mcg": null,
-      "vitamin_c_mg": null,
-      "vitamin_d_mcg": null,
-      "b12_mcg": null,
-      "folate_mcg": null
+      "vitamin_a": "29.9 μg - 3% DV",
+      "vitamin_c": "5.0 mg - 6% DV",
+      "vitamin_d": "36.4 IU - 6% DV",
+      "b12": "0.3 μg - 11% DV",
+      "folate": null
     },
     "minerals": {
-      "calcium_mg": null,
-      "iron_mg": null,
-      "magnesium_mg": null,
-      "potassium_mg": null,
-      "sodium_mg": null
+      "calcium": "81.4 mg - 8% DV",
+      "iron": "1.1 mg - 9% DV",
+      "magnesium": "24.5 mg - 6% DV",
+      "potassium": "249.3 mg - 7% DV",
+      "sodium": "69.1 mg - 5% DV"
+    },
+    "carbohydrates": {
+      "total_carbs": "45.5 g - 29% DV",
+      "fiber": "3.2 g - 8% DV",
+      "sugars": "28.0 g - No Target",
+      "added_sugars": "21.8 g - 44% DV"
     },
     "lipids": {
-      "cholesterol_mg": null
+      "cholesterol_mg": "41.8 mg - 21% DV"
     }
   },
   "steps": [
