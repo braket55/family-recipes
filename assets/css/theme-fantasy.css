@@ -31,6 +31,13 @@ body.theme-fantasy {
 
   --site-title-tracking: 0.04em;
   --site-title-transform: none;
+
+  /* Breadcrumb colors */
+  --breadcrumb-text: #5b4636;
+  --breadcrumb-link: #9c4221;
+
+  /* Slightly warmer checked text color for strike-through items */
+  --checked-text: #8b714f;
 }
 
 /* Slight paper grain overlay */
@@ -71,6 +78,7 @@ body.theme-fantasy .recipe-section {
   background: linear-gradient(135deg, #fff8e3 0%, #fffaf0 40%, #fbe9c6 100%);
   border-radius: 1rem;
   border: 1px solid rgba(160, 130, 90, 0.6);
+  position: relative;
 }
 
 /* Tags + badges look like little scroll labels */
@@ -87,7 +95,6 @@ body.theme-fantasy a {
   color: #9c4221;
 }
 
-
 /* Fantasy: headings feel a bit more storybook */
 body.theme-fantasy .recipe-section h2 {
   font-style: italic;
@@ -95,10 +102,6 @@ body.theme-fantasy .recipe-section h2 {
 }
 
 /* Fantasy: inner dashed border like a page inset */
-body.theme-fantasy .recipe-section {
-  position: relative;
-}
-
 body.theme-fantasy .recipe-section::before {
   content: "";
   position: absolute;
@@ -108,9 +111,75 @@ body.theme-fantasy .recipe-section::before {
   pointer-events: none;
 }
 
-/* Fantasy breadcrumb colors */
-body.theme-fantasy {
-  --breadcrumb-text: #5b4636;
-  --breadcrumb-link: #9c4221;
+/* Fantasy-specific styling for checked ingredients/steps */
+body.theme-fantasy .is-checked .check-btn {
+  background: radial-gradient(
+    circle at 30% 0%,
+    #fef3c7 0,
+    #d97706 35%,
+    #92400e 100%
+  );
+  border-color: #b45309;
+  box-shadow:
+    0 0 0 1px rgba(180, 83, 9, 0.35),
+    0 0 8px rgba(245, 158, 11, 0.75);
+  /* tiny magical pulse when it becomes checked */
+  animation: fantasy-sparkle 220ms ease-out;
 }
 
+body.theme-fantasy .is-checked .check-btn .check-icon::before {
+  color: #fffaf0;
+}
+
+/* ✨ Fantasy sparkle animation for the check button */
+@keyframes fantasy-sparkle {
+  0% {
+    transform: scale(0.85);
+    box-shadow:
+      0 0 0 0 rgba(180, 83, 9, 0.0),
+      0 0 0 rgba(245, 158, 11, 0.0);
+    filter: brightness(1);
+  }
+  45% {
+    transform: scale(1.1) rotate(-0.5deg);
+    box-shadow:
+      0 0 0 1px rgba(180, 83, 9, 0.5),
+      0 0 10px rgba(245, 158, 11, 0.9);
+    filter: brightness(1.18);
+  }
+  100% {
+    transform: scale(0.9) rotate(0deg);
+    box-shadow:
+      0 0 0 1px rgba(180, 83, 9, 0.35),
+      0 0 8px rgba(245, 158, 11, 0.75);
+    filter: brightness(1);
+  }
+}
+
+/* 🖋 Fantasy ink-style text animation for checked items */
+body.theme-fantasy .is-checked .ingredient-text,
+body.theme-fantasy .is-checked .step-text {
+  animation: fantasy-text-ink 260ms ease-out;
+}
+
+/* Ink “settling” into the page */
+@keyframes fantasy-text-ink {
+  0% {
+    letter-spacing: 0.02em;
+    opacity: 0.7;
+    transform: translateY(-0.5px);
+    text-shadow: none;
+  }
+  45% {
+    letter-spacing: 0.06em;
+    opacity: 0.95;
+    transform: translateY(0px);
+    text-shadow: 0 0.5px 0 rgba(59, 47, 47, 0.35);
+  }
+  100% {
+    letter-spacing: 0.02em;
+    opacity: 0.85;
+    transform: translateY(0px);
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+}

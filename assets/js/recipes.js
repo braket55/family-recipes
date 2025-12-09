@@ -11,6 +11,10 @@
 
   // Store the currently loaded recipe so we can re-render
   let currentRecipe = null;
+  let currentRecipeId = null;
+
+  // Check state storage
+  const CHECK_KEY_PREFIX = "familyRecipeChecks:";
 
   document.addEventListener("DOMContentLoaded", () => {
     const recipeListEl = document.getElementById("recipe-list");
@@ -71,7 +75,6 @@
       applyFilters();
     }
   }
-
 
   function renderRecipeList(recipes) {
     const listEl = document.getElementById("recipe-list");
@@ -175,6 +178,8 @@
       return;
     }
 
+    currentRecipeId = id;
+
     fetch(`${RECIPE_DATA_DIR}${id}.json`)
       .then(response => {
         if (!response.ok) throw new Error("Failed to load recipe: " + id);
@@ -245,7 +250,6 @@
       currentEl.textContent = recipe.name || "Untitled recipe";
     }
 
-
     // ----- Dietary Flags -----
     const flagsEl = document.getElementById("recipe-dietary-flags");
     if (flagsEl && recipe.dietary_flags) {
@@ -278,8 +282,6 @@
       ratingsEl.appendChild(ul);
     }
 
-
-
     // ----- Ingredients -----
     setupUnitToggle();
     renderIngredients(recipe);
@@ -289,13 +291,25 @@
     if (stepsList) {
       stepsList.innerHTML = "";
       if (Array.isArray(recipe.steps)) {
-        recipe.steps.forEach(step => {
+        recipe.steps.forEach((stepText, index) => {
           const li = document.createElement("li");
-          li.textContent = step;
+          li.classList.add("step-item");
+          li.dataset.stepIndex = String(index);
+
+          li.innerHTML = `
+            <button class="check-btn check-btn--square" type="button" aria-pressed="false">
+              <span class="check-icon" aria-hidden="true"></span>
+            </button>
+            <span class="step-text">${stepText}</span>
+          `;
+
           stepsList.appendChild(li);
         });
       }
     }
+
+    // Apply any saved checked state (for both ingredients & steps)
+    applySavedCheckState();
 
     // ----- Nutrition -----
     renderNutritionSection(recipe.nutrition);
@@ -311,6 +325,21 @@
           notesList.appendChild(li);
         });
       }
+    }
+
+    // ----- Clear / Reset Checkmarks Buttons -----
+    const clearIngredientsBtn = document.getElementById("clear-ingredient-checks-btn");
+    if (clearIngredientsBtn) {
+      clearIngredientsBtn.addEventListener("click", () => {
+        clearCheckState("ingredients");
+      });
+    }
+
+    const clearStepsBtn = document.getElementById("clear-step-checks-btn");
+    if (clearStepsBtn) {
+      clearStepsBtn.addEventListener("click", () => {
+        clearCheckState("steps");
+      });
     }
   }
 
@@ -403,20 +432,68 @@
   }
 
   function renderIngredients(recipe) {
-    const list = document.getElementById("ingredients-list");
-    if (!list) return;
+    const dryList = document.getElementById("ingredients-dry");
+    const wetList = document.getElementById("ingredients-wet");
 
-    list.innerHTML = "";
+    if (!dryList || !wetList) return;
+
+    dryList.innerHTML = "";
+    wetList.innerHTML = "";
 
     if (!Array.isArray(recipe.ingredients)) return;
 
-    recipe.ingredients.forEach(ing => {
+    // Group by type, but keep original indices
+    const dryIngredients = [];
+    const wetIngredients = [];
+    const otherIngredients = [];
+
+    recipe.ingredients.forEach((ing, index) => {
+      const type = (ing.type || "").toLowerCase();
+      const entry = { ing, index };
+      if (type === "dry") {
+        dryIngredients.push(entry);
+      } else if (type === "wet") {
+        wetIngredients.push(entry);
+      } else {
+        otherIngredients.push(entry);
+      }
+    });
+
+    function createIngredientLi(entry) {
+      const { ing, index } = entry;
       const li = document.createElement("li");
+      li.classList.add("ingredient-item");
+      li.dataset.ingredientIndex = String(index);
+
       const { displayText } = convertIngredientUnits(ing, currentUnitMode);
       const notes = ing.notes ? ` (${ing.notes})` : "";
-      li.textContent = `${displayText}${notes}`;
-      list.appendChild(li);
+      const fullText = `${displayText}${notes}`;
+
+      li.innerHTML = `
+        <button class="check-btn check-btn--circle" type="button" aria-pressed="false">
+          <span class="check-icon" aria-hidden="true"></span>
+        </button>
+        <span class="ingredient-text">${fullText}</span>
+      `;
+
+      return li;
+    }
+
+    dryIngredients.forEach(entry => {
+      dryList.appendChild(createIngredientLi(entry));
     });
+
+    wetIngredients.forEach(entry => {
+      wetList.appendChild(createIngredientLi(entry));
+    });
+
+    // If anything has no type / unknown type, put it at the bottom of wet
+    otherIngredients.forEach(entry => {
+      wetList.appendChild(createIngredientLi(entry));
+    });
+
+    // Re-apply saved checked state to ingredients after re-render (e.g. unit change)
+    applySavedCheckState();
   }
 
   // -----------------------------------------------------------
@@ -463,4 +540,137 @@
   function formatKey(key) {
     return key.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
   }
+
+  // -----------------------------------------------------------
+  // Check state persistence
+  // -----------------------------------------------------------
+
+  function getCheckStorageKey() {
+    if (!currentRecipeId) return null;
+    return CHECK_KEY_PREFIX + currentRecipeId;
+  }
+
+  function loadCheckState() {
+    const key = getCheckStorageKey();
+    if (!key) return { ingredients: [], steps: [] };
+
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return { ingredients: [], steps: [] };
+      const parsed = JSON.parse(raw);
+      return {
+        ingredients: Array.isArray(parsed.ingredients) ? parsed.ingredients : [],
+        steps: Array.isArray(parsed.steps) ? parsed.steps : []
+      };
+    } catch {
+      return { ingredients: [], steps: [] };
+    }
+  }
+
+  function saveCheckState() {
+    const key = getCheckStorageKey();
+    if (!key) return;
+
+    const ingredientsState = [];
+    const stepsState = [];
+
+    document.querySelectorAll(".ingredient-item").forEach(li => {
+      const index = parseInt(li.dataset.ingredientIndex, 10);
+      if (Number.isNaN(index)) return;
+      ingredientsState[index] = li.classList.contains("is-checked");
+    });
+
+    document.querySelectorAll(".step-item").forEach(li => {
+      const index = parseInt(li.dataset.stepIndex, 10);
+      if (Number.isNaN(index)) return;
+      stepsState[index] = li.classList.contains("is-checked");
+    });
+
+    const payload = {
+      ingredients: ingredientsState,
+      steps: stepsState
+    };
+
+    try {
+      localStorage.setItem(key, JSON.stringify(payload));
+    } catch {
+      // ignore storage errors
+    }
+  }
+
+  function applySavedCheckState() {
+    const { ingredients, steps } = loadCheckState();
+
+    // Ingredients
+    document.querySelectorAll(".ingredient-item").forEach(li => {
+      const index = parseInt(li.dataset.ingredientIndex, 10);
+      if (Number.isNaN(index)) return;
+
+      const checked = ingredients[index];
+      const btn = li.querySelector(".check-btn");
+
+      if (checked) {
+        li.classList.add("is-checked");
+        if (btn) btn.setAttribute("aria-pressed", "true");
+      } else {
+        li.classList.remove("is-checked");
+        if (btn) btn.setAttribute("aria-pressed", "false");
+      }
+    });
+
+    // Steps
+    document.querySelectorAll(".step-item").forEach(li => {
+      const index = parseInt(li.dataset.stepIndex, 10);
+      if (Number.isNaN(index)) return;
+
+      const checked = steps[index];
+      const btn = li.querySelector(".check-btn");
+
+      if (checked) {
+        li.classList.add("is-checked");
+        if (btn) btn.setAttribute("aria-pressed", "true");
+      } else {
+        li.classList.remove("is-checked");
+        if (btn) btn.setAttribute("aria-pressed", "false");
+      }
+    });
+  }
+
+  function clearCheckState(scope) {
+    // scope: "ingredients" | "steps" | "all"
+    const selectors = [];
+    if (scope === "ingredients" || scope === "all") {
+      selectors.push(".ingredient-item.is-checked");
+    }
+    if (scope === "steps" || scope === "all") {
+      selectors.push(".step-item.is-checked");
+    }
+    if (!selectors.length) return;
+
+    document.querySelectorAll(selectors.join(", ")).forEach(li => {
+      li.classList.remove("is-checked");
+      const btn = li.querySelector(".check-btn");
+      if (btn) btn.setAttribute("aria-pressed", "false");
+    });
+
+    // Update stored state to match current UI
+    saveCheckState();
+  }
+
+  // -----------------------------------------------------------
+  // Check / Uncheck behavior for ingredients & steps
+  // -----------------------------------------------------------
+  document.addEventListener("click", (event) => {
+    const btn = event.target.closest(".check-btn");
+    if (!btn) return;
+
+    const listItem = btn.closest(".ingredient-item, .step-item");
+    if (!listItem) return;
+
+    const isChecked = listItem.classList.toggle("is-checked");
+    btn.setAttribute("aria-pressed", String(isChecked));
+
+    // Persist the new state
+    saveCheckState();
+  });
 })();

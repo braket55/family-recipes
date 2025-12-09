@@ -53,14 +53,35 @@
                 <button type="button" class="units-btn" data-units="kitchen">Kitchen</button>
             </div>
 
-            <h2>Ingredients</h2>
-            <ul id="ingredients-list"></ul>
+            <div class="section-header-row">
+                <h2>Ingredients</h2>
+                <button type="button" id="clear-ingredient-checks-btn" class="clear-checks-btn">
+                    Reset ingredients
+                </button>
+            </div>
+
+            <div class="ingredients-groups">
+                <div class="ingredients-group">
+                    <h3>Dry Ingredients</h3>
+                    <ul id="ingredients-dry"></ul>
+                </div>
+
+                <div class="ingredients-group">
+                    <h3>Wet Ingredients</h3>
+                    <ul id="ingredients-wet"></ul>
+                </div>
+            </div>
         </section>
 
 
         <!-- Steps -->
         <section class="recipe-section">
-            <h2>Steps</h2>
+            <div class="section-header-row">
+                <h2>Steps</h2>
+                <button type="button" id="clear-step-checks-btn" class="clear-checks-btn">
+                    Reset steps
+                </button>
+            </div>
             <ol id="steps-list"></ol>
         </section>
 
