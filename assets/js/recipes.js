@@ -659,42 +659,57 @@
   // -----------------------------------------------------------
 
   function renderNutritionSection(nutrition) {
-    if (!nutrition || typeof nutrition !== "object") return;
+  if (!nutrition || typeof nutrition !== "object") return;
 
-    const groups = [
-      ["nutrition-macros", "Macros", nutrition.macros],
-      ["nutrition-carbs", "Carbohydrates", nutrition.carbohydrates],
-      ["nutrition-vitamins", "Vitamins", nutrition.vitamins],
-      ["nutrition-minerals", "Minerals", nutrition.minerals],
-      ["nutrition-lipids", "Lipids", nutrition.lipids]
-    ];
+  const section = document.querySelector('#nutrition-macros')?.closest('.recipe-section');
+  if (!section) return;
 
-    groups.forEach(([id, title, group]) => {
-      const container = document.getElementById(id);
-      if (!container) return;
+  // Clear old header if needed
+  const oldHeader = section.querySelector('.nutrition-serving-header');
+  if (oldHeader) oldHeader.remove();
 
-      container.innerHTML = "";
+  // Build serving size label
+  const serving = nutrition.serving_size?.trim();
+  const header = document.createElement("p");
+  header.className = "nutrition-serving-header";
+  header.innerHTML = serving
+    ? `<em>Per ${serving}</em>`
+    : `<em>Per serving</em>`;
+  section.insertBefore(header, section.children[1]);
 
-      const entries = group
-        ? Object.entries(group).filter(([_, val]) => val !== null && val !== "")
-        : [];
+  const groups = [
+    ["nutrition-macros", "Macros", nutrition.macros],
+    ["nutrition-carbs", "Carbohydrates", nutrition.carbohydrates],
+    ["nutrition-vitamins", "Vitamins", nutrition.vitamins],
+    ["nutrition-minerals", "Minerals", nutrition.minerals],
+    ["nutrition-lipids", "Lipids", nutrition.lipids]
+  ];
 
-      if (!entries.length) return;
+  groups.forEach(([id, title, group]) => {
+    const container = document.getElementById(id);
+    if (!container) return;
 
-      const h3 = document.createElement("h3");
-      h3.textContent = title;
-      container.appendChild(h3);
+    container.innerHTML = "";
 
-      const ul = document.createElement("ul");
-      entries.forEach(([key, value]) => {
-        const li = document.createElement("li");
-        li.textContent = `${formatKey(key)}: ${value}`;
-        ul.appendChild(li);
-      });
-      container.appendChild(ul);
+    const entries = group
+      ? Object.entries(group).filter(([_, val]) => val !== null && val !== "")
+      : [];
+
+    if (!entries.length) return;
+
+    const h3 = document.createElement("h3");
+    h3.textContent = title;
+    container.appendChild(h3);
+
+    const ul = document.createElement("ul");
+    entries.forEach(([key, value]) => {
+      const li = document.createElement("li");
+      li.textContent = `${formatKey(key)}: ${value}`;
+      ul.appendChild(li);
     });
-  }
-
+    container.appendChild(ul);
+  });
+}
   function formatKey(key) {
     return key.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
   }

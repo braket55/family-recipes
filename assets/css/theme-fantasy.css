@@ -177,36 +177,3 @@ body.theme-fantasy .is-checked .step-text {
   }
 }
 
-/* 📖 Fantasy-specific recipe image frame */
-body.theme-fantasy .recipe-image-figure {
-  background: radial-gradient(circle at top, #fff8e3 0, #fbe9c6 40%, #f2e0bf 100%);
-  border-radius: 1rem;
-  border: 1px solid rgba(160, 130, 90, 0.7);
-  box-shadow:
-    0 8px 18px rgba(0, 0, 0, 0.18),
-    0 0 0 1px rgba(160, 130, 90, 0.4);
-  position: relative;
-}
-
-/* Little “corner” flourishes on the image like a mounted illustration */
-body.theme-fantasy .recipe-image-figure::before,
-body.theme-fantasy .recipe-image-figure::after {
-  content: "";
-  position: absolute;
-  width: 1.4rem;
-  height: 1.4rem;
-  border-radius: 0.4rem;
-  border: 1px solid rgba(160, 130, 90, 0.7);
-  opacity: 0.9;
-  background: radial-gradient(circle at 30% 0%, #fffaf0 0, #f6e0b5 40%, transparent 100%);
-}
-
-body.theme-fantasy .recipe-image-figure::before {
-  top: 0.5rem;
-  left: 0.75rem;
-}
-
-body.theme-fantasy .recipe-image-figure::after {
-  bottom: 0.5rem;
-  right: 0.75rem;
-}

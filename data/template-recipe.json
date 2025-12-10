@@ -1,16 +1,20 @@
 {
-  "id": "RECIPE-ID-HERE",                      // must match the filename (e.g., "chili-con-carne")
+  // MUST REMOVE COMMENTS BEFORE USING THIS FILE!
+  "id": "RECIPE-ID-HERE", //must_match_the_filename
   "name": "Recipe Name Here",
-  "category": "breakfast | lunch | dinner | dessert | snack",
+  "category": "breakfast", //breakfast_lunch_dinner_dessert_snack_drink
   "servings": 0,
   "prep_time_minutes": 0,
   "cook_time_minutes": 0,
-  "source": "",                                // "Family Recipe", "Grandma's cookbook", URL, etc.
-
+  "source": "", //supports_[text](https://example.com)
+  "image": {
+    "src": "assets/images/recipes/RECIPE-ID-HERE.jpeg",
+    "alt": "Short, descriptive alt text for this recipe photo."
+  },
   "tags": [
-    // e.g., "easy", "meal prep", "high protein"
+    "family favorite",
+    "healthy"
   ],
-
   "dietary_flags": {
     "dairy_free": false,
     "gluten_free": false,
@@ -22,84 +26,86 @@
     "low_sugar": false,
     "high_protein": false
   },
-
   "family_ratings": [
-    // Example:
-    // {
-    //   "name": "Ryan",
-    //   "stars": 5,
-    //   "comment": "Love this one!"
-    // }
+    {
+      "name": "Ryan",
+      "stars": 5,
+      "comment": "Perfect for breakfast meal prep."
+    },
+    {
+      "name": "Jess",
+      "stars": 5,
+      "comment": "Love the blueberry and chocolate combo!"
+    },
+    {
+      "name": "UV",
+      "stars": 0,
+      "comment": "Not chicken or rice. Hiss."
+    },
+    {
+      "name": "Petra",
+      "stars": 1,
+      "comment": "Not bread or paper. Deeply suspicious."
+    }
   ],
-
   "ingredients": [
     {
       "item": "Ingredient name",
-      "type": "dry | wet",                     // optional, used for display or filtering later
+      "type": "dry",
       "amounts": {
         "metric": {
           "quantity": 0,
-          "unit": "g | ml | etc"
+          "unit": "g"
         },
         "imperial": {
           "quantity": 0,
-          "unit": "oz | fl oz | etc"
+          "unit": "oz"
         },
-        "kitchen": "1 cup | 2 tbsp | 3 slices | etc"
+        "kitchen": "1 cup"
       },
-      "notes": ""                               // optional
+      "notes": ""
     }
   ],
-
   "nutrition": {
-    "serving_size": "",                        // e.g., "1 bar", "1 cup", etc.
-
+    "serving_size": "",
     "macros": {
       "calories": null,
-      "protein_g": null,
-      "net_carbs_g": null,
-      "fat_g": null,
-      "fiber_g": null
+      "protein": null, //e.g._"5.9_g_-_9%_DV"
+      "net_carbs": null,
+      "fat": null
     },
-
-    "carbohydrates": {
-      "total_carbs_g": null,
-      "fiber_g": null,
-      "sugars_g": null,
-      "starch_g": null,
-      "added_sugars_g": null
-    },
-
     "vitamins": {
-      "vitamin_a_mcg": null,
-      "vitamin_c_mg": null,
-      "vitamin_d_mcg": null,
-      "b12_mcg": null,
-      "folate_mcg": null
+      "vitamin_a": null,
+      "vitamin_c": null,
+      "vitamin_d": null,
+      "b12": null,
+      "folate": null
     },
-
     "minerals": {
-      "calcium_mg": null,
-      "iron_mg": null,
-      "magnesium_mg": null,
-      "potassium_mg": null,
-      "sodium_mg": null
+      "calcium": null,
+      "iron": null,
+      "magnesium": null,
+      "potassium": null,
+      "sodium": null
     },
-
+    "carbohydrates": {
+      "total_carbs": null,
+      "fiber": null,
+      "sugars": null,
+      "added_sugars": null
+    },
     "lipids": {
       "cholesterol_mg": null
     }
   },
-
   "steps": [
-    // "Step 1...",
-    // "Step 2...",
-    // etc.
+    "Adjust oven rack to middle position.",
+    "Preheat oven to 175°C (350°F).",
+    "Spray a 23×33 cm (9×13 inch) baking dish with non-stick cooking spray.",
+    "Whisk all wet ingredients together in a large bowl."
   ],
-
   "notes": [
-    // "Try this variation...",
-    // "Reduce sugar if needed...",
-    // etc.
+   "These are delicious!",
+    "Try dried cranberries too."
   ]
 }
