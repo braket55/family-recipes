@@ -16,6 +16,35 @@
   // Check state storage
   const CHECK_KEY_PREFIX = "familyRecipeChecks:";
 
+  // -----------------------------------------------------------
+  // Simple rich-text renderer for [label](https://link) syntax
+  // -----------------------------------------------------------
+
+  function escapeHTML(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  // Supports Markdown-style links: [text](https://example.com)
+  function renderRichText(str) {
+    if (!str) return "";
+
+    // Escape everything first so raw < > & etc are safe
+    let escaped = escapeHTML(str);
+
+    // Then turn [label](https://url) into a real <a> link
+    const linkPattern = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+
+    return escaped.replace(
+      linkPattern,
+      '<a href="$2" target="_blank" rel="noopener">$1</a>'
+    );
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     const recipeListEl = document.getElementById("recipe-list");
     const recipeContainerEl = document.getElementById("recipe-container");
@@ -284,13 +313,24 @@
           li.classList.add("step-item");
           li.dataset.stepIndex = String(index);
 
-          li.innerHTML = `
-            <button class="check-btn check-btn--square" type="button" aria-pressed="false">
-              <span class="check-icon" aria-hidden="true"></span>
-            </button>
-            <span class="step-text">${stepText}</span>
-          `;
+          // Check button
+          const btn = document.createElement("button");
+          btn.className = "check-btn check-btn--square";
+          btn.type = "button";
+          btn.setAttribute("aria-pressed", "false");
 
+          const icon = document.createElement("span");
+          icon.className = "check-icon";
+          icon.setAttribute("aria-hidden", "true");
+          btn.appendChild(icon);
+
+          // Step text with rich link support
+          const textSpan = document.createElement("span");
+          textSpan.className = "step-text";
+          textSpan.innerHTML = renderRichText(stepText);
+
+          li.appendChild(btn);
+          li.appendChild(textSpan);
           stepsList.appendChild(li);
         });
       }
@@ -309,7 +349,7 @@
       if (Array.isArray(recipe.notes)) {
         recipe.notes.forEach(note => {
           const li = document.createElement("li");
-          li.textContent = note;
+          li.innerHTML = renderRichText(note);
           notesList.appendChild(li);
         });
       }
@@ -357,43 +397,43 @@
   // -----------------------------------------------------------
 
   function renderInfoBadges(recipe) {
-  const container = document.getElementById("recipe-info-badges");
-  if (!container) return;
+    const container = document.getElementById("recipe-info-badges");
+    if (!container) return;
 
-  container.innerHTML = "";
+    container.innerHTML = "";
 
-  const items = [];
+    const items = [];
 
-  if (typeof recipe.prep_time_minutes === "number") {
-    items.push(`Prep: ${recipe.prep_time_minutes} min`);
+    if (typeof recipe.prep_time_minutes === "number") {
+      items.push(`Prep: ${recipe.prep_time_minutes} min`);
+    }
+    if (typeof recipe.cook_time_minutes === "number") {
+      items.push(`Cook: ${recipe.cook_time_minutes} min`);
+    }
+    if (typeof recipe.servings === "number") {
+      items.push(`Serves: ${recipe.servings}`);
+    }
+
+    if (!items.length) {
+      container.style.display = "none";
+      return;
+    }
+
+    container.style.display = "";
+
+    // Bold label: "Details:"
+    const label = document.createElement("strong");
+    label.textContent = "Details: ";
+    container.appendChild(label);
+
+    // Then the badges
+    items.forEach(text => {
+      const span = document.createElement("span");
+      span.className = "badge info-badge";
+      span.textContent = text;
+      container.appendChild(span);
+    });
   }
-  if (typeof recipe.cook_time_minutes === "number") {
-    items.push(`Cook: ${recipe.cook_time_minutes} min`);
-  }
-  if (typeof recipe.servings === "number") {
-    items.push(`Serves: ${recipe.servings}`);
-  }
-
-  if (!items.length) {
-    container.style.display = "none";
-    return;
-  }
-
-  container.style.display = "";
-
-  // Bold label: "Details:"
-  const label = document.createElement("strong");
-  label.textContent = "Details: ";
-  container.appendChild(label);
-
-  // Then the badges
-  items.forEach(text => {
-    const span = document.createElement("span");
-    span.className = "badge info-badge";
-    span.textContent = text;
-    container.appendChild(span);
-  });
-}
 
   function renderHeroImage(recipe) {
     const wrapper = document.getElementById("recipe-image-wrapper");
@@ -427,7 +467,7 @@
 
   sourceEl.innerHTML = "";
 
-  // No source at all
+  // No source present
   if (!recipe.source) {
     sourceEl.style.display = "none";
     return;
@@ -436,32 +476,15 @@
   sourceEl.style.display = "";
 
   const p = document.createElement("p");
+
   const label = document.createElement("strong");
   label.textContent = "Source: ";
   p.appendChild(label);
 
-  // Case 1: source is a simple string
-  if (typeof recipe.source === "string") {
-    p.appendChild(document.createTextNode(recipe.source));
-  }
-
-  // Case 2: source is an object with text + url
-  else if (typeof recipe.source === "object") {
-    const text = recipe.source.text || "";
-    const url = recipe.source.url || null;
-
-    if (url) {
-      const link = document.createElement("a");
-      link.href = url;
-      link.target = "_blank";
-      link.rel = "noopener";
-      link.textContent = text;
-      p.appendChild(link);
-    } else {
-      // fallback: just plain text
-      p.appendChild(document.createTextNode(text));
-    }
-  }
+  // Treat source as markdown-capable string
+  const span = document.createElement("span");
+  span.innerHTML = renderRichText(String(recipe.source));
+  p.appendChild(span);
 
   sourceEl.appendChild(p);
 }
@@ -547,11 +570,11 @@
 
     // Fallback to any legacy fields if present
     const qty = ingredient.quantity ?? "";
-      const unit = ingredient.unit ? ` ${ingredient.unit}` : "";
-      const item = ingredient.item || "";
-      return {
-        displayText: `${qty}${unit} ${item}`.trim()
-      };
+    const unit = ingredient.unit ? ` ${ingredient.unit}` : "";
+    const item = ingredient.item || "";
+    return {
+      displayText: `${qty}${unit} ${item}`.trim()
+    };
   }
 
   function renderIngredients(recipe) {
@@ -592,12 +615,24 @@
       const notes = ing.notes ? ` (${ing.notes})` : "";
       const fullText = `${displayText}${notes}`;
 
-      li.innerHTML = `
-        <button class="check-btn check-btn--circle" type="button" aria-pressed="false">
-          <span class="check-icon" aria-hidden="true"></span>
-        </button>
-        <span class="ingredient-text">${fullText}</span>
-      `;
+      // Check button
+      const btn = document.createElement("button");
+      btn.className = "check-btn check-btn--circle";
+      btn.type = "button";
+      btn.setAttribute("aria-pressed", "false");
+
+      const icon = document.createElement("span");
+      icon.className = "check-icon";
+      icon.setAttribute("aria-hidden", "true");
+      btn.appendChild(icon);
+
+      // Ingredient text (supports [label](url))
+      const textSpan = document.createElement("span");
+      textSpan.className = "ingredient-text";
+      textSpan.innerHTML = renderRichText(fullText);
+
+      li.appendChild(btn);
+      li.appendChild(textSpan);
 
       return li;
     }

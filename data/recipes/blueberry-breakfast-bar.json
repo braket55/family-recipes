@@ -5,10 +5,7 @@
   "servings": 12,
   "prep_time_minutes": 15,
   "cook_time_minutes": 35,
-  "source": {
-  "text": "Recipe modified from Sally's Baking Addiction",
-  "url": "https://sallysbakingaddiction.com/baked-oatmeal/#tasty-recipes-66530"
-},
+  "source": "Recipe modified from [Sally's Baking Addiction](https://sallysbakingaddiction.com/baked-oatmeal/#tasty-recipes-66530)",
   "tags": [
     "family favorite",
     "healthy"
@@ -289,6 +286,7 @@
   ],
   "notes": [
     "These are delicious!",
-    "Try dried cranberries too."
+    "Try dried cranberries too.",
+    "Test of [rich text notes](https://www.eigenspellmedia.com) formatting."
   ]
 }
