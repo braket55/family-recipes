@@ -371,6 +371,78 @@ button:active {
   padding-left: 0;
 }
 
+/* --- Recipe hero meta row + image + source --- */
+
+/* Row that holds tags, dietary flags, and time / servings badges */
+.recipe-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+/* Make each meta block (tags, dietary, info badges) behave nicely in the row */
+.recipe-meta-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+/* Add a "Details:" label before the first info badge (prep / cook / servings) */
+.info-badge:first-child::before {
+  content: "Details:";
+  font-weight: 600;
+  margin-right: 0.25rem;
+}
+
+/* Make the source line use a bold label like Tags / Dietary.
+   This targets either a .recipe-source element, or anything inside a recipe section
+   whose id contains "source" (e.g. id="recipe-source"). */
+.recipe-section .recipe-source::before,
+.recipe-section [id*="source"]::before {
+  content: "Source:";
+  font-weight: 600;
+  margin-right: 0.25rem;
+}
+
+/* Info badges share the base .badge styling, but are a bit more subtle and compact */
+.info-badge {
+  font-size: 0.75rem;
+  padding-inline: 0.5rem;
+}
+
+/* Image wrapper spans full card width */
+.recipe-image-wrapper {
+  margin-top: 0.25rem;
+}
+
+/* Figure around the recipe image; theme files will decorate this further */
+.recipe-image-figure {
+  margin: 0;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  background: var(--surface-elevated);
+  position: relative;
+}
+
+/* Actual recipe image */
+.recipe-image {
+  display: block;
+  width: 100%;
+  height: auto;      /* keep aspect ratio */
+  /* no max-height, no object-fit to avoid cropping */
+}
+
+/* Source line below image */
+.recipe-source {
+  margin-top: 0.65rem;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
 /* Breadcrumbs */
 .breadcrumb {
   font-size: 0.85rem;
@@ -519,7 +591,7 @@ button:active {
   font-size: 1rem;
 }
 
-/* Badges for dietary flags */
+/* Badges for dietary flags + info badges */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -531,6 +603,8 @@ button:active {
   background: var(--badge-bg);
   color: var(--badge-text);
 }
+
+
 
 /* Family ratings list */
 #family-ratings ul {

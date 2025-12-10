@@ -229,27 +229,6 @@
       }
     }
 
-    function updateBreadcrumb(recipe) {
-      const categoryLink = document.getElementById("breadcrumb-category-link");
-      const currentEl = document.getElementById("breadcrumb-current");
-
-      if (!categoryLink || !currentEl) return;
-
-      const rawCategory = recipe.category || "";
-      const categoryName = rawCategory
-        ? rawCategory.charAt(0).toUpperCase() + rawCategory.slice(1)
-        : "Category";
-
-      // Label the crumb
-      categoryLink.textContent = categoryName;
-
-      // Make it navigate to homepage filtered by that category
-      categoryLink.href = `index.html?category=${encodeURIComponent(rawCategory)}`;
-
-      // Current page label
-      currentEl.textContent = recipe.name || "Untitled recipe";
-    }
-
     // ----- Dietary Flags -----
     const flagsEl = document.getElementById("recipe-dietary-flags");
     if (flagsEl && recipe.dietary_flags) {
@@ -267,6 +246,15 @@
         }
       });
     }
+
+    // ----- Time / Servings badges -----
+    renderInfoBadges(recipe);
+
+    // ----- Hero Image -----
+    renderHeroImage(recipe);
+
+    // ----- Source / attribution -----
+    renderSource(recipe);
 
     // ----- Family Ratings -----
     const ratingsEl = document.getElementById("family-ratings");
@@ -342,6 +330,141 @@
       });
     }
   }
+
+  function updateBreadcrumb(recipe) {
+    const categoryLink = document.getElementById("breadcrumb-category-link");
+    const currentEl = document.getElementById("breadcrumb-current");
+
+    if (!categoryLink || !currentEl) return;
+
+    const rawCategory = recipe.category || "";
+    const categoryName = rawCategory
+      ? rawCategory.charAt(0).toUpperCase() + rawCategory.slice(1)
+      : "Category";
+
+    // Label the crumb
+    categoryLink.textContent = categoryName;
+
+    // Make it navigate to homepage filtered by that category
+    categoryLink.href = `index.html?category=${encodeURIComponent(rawCategory)}`;
+
+    // Current page label
+    currentEl.textContent = recipe.name || "Untitled recipe";
+  }
+
+  // -----------------------------------------------------------
+  // Time / Servings Badges + Hero Image + Source
+  // -----------------------------------------------------------
+
+  function renderInfoBadges(recipe) {
+  const container = document.getElementById("recipe-info-badges");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const items = [];
+
+  if (typeof recipe.prep_time_minutes === "number") {
+    items.push(`Prep: ${recipe.prep_time_minutes} min`);
+  }
+  if (typeof recipe.cook_time_minutes === "number") {
+    items.push(`Cook: ${recipe.cook_time_minutes} min`);
+  }
+  if (typeof recipe.servings === "number") {
+    items.push(`Serves: ${recipe.servings}`);
+  }
+
+  if (!items.length) {
+    container.style.display = "none";
+    return;
+  }
+
+  container.style.display = "";
+
+  // Bold label: "Details:"
+  const label = document.createElement("strong");
+  label.textContent = "Details: ";
+  container.appendChild(label);
+
+  // Then the badges
+  items.forEach(text => {
+    const span = document.createElement("span");
+    span.className = "badge info-badge";
+    span.textContent = text;
+    container.appendChild(span);
+  });
+}
+
+  function renderHeroImage(recipe) {
+    const wrapper = document.getElementById("recipe-image-wrapper");
+    if (!wrapper) return;
+
+    wrapper.innerHTML = "";
+
+    if (!recipe.image || !recipe.image.src) {
+      wrapper.style.display = "none";
+      return;
+    }
+
+    wrapper.style.display = "";
+
+    const figure = document.createElement("figure");
+    figure.className = "recipe-image-figure";
+
+    const img = document.createElement("img");
+    img.className = "recipe-image";
+    img.src = recipe.image.src;
+    img.alt = recipe.image.alt || recipe.name || "Recipe image";
+    img.loading = "lazy";
+
+    figure.appendChild(img);
+    wrapper.appendChild(figure);
+  }
+
+  function renderSource(recipe) {
+  const sourceEl = document.getElementById("recipe-source");
+  if (!sourceEl) return;
+
+  sourceEl.innerHTML = "";
+
+  // No source at all
+  if (!recipe.source) {
+    sourceEl.style.display = "none";
+    return;
+  }
+
+  sourceEl.style.display = "";
+
+  const p = document.createElement("p");
+  const label = document.createElement("strong");
+  label.textContent = "Source: ";
+  p.appendChild(label);
+
+  // Case 1: source is a simple string
+  if (typeof recipe.source === "string") {
+    p.appendChild(document.createTextNode(recipe.source));
+  }
+
+  // Case 2: source is an object with text + url
+  else if (typeof recipe.source === "object") {
+    const text = recipe.source.text || "";
+    const url = recipe.source.url || null;
+
+    if (url) {
+      const link = document.createElement("a");
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.textContent = text;
+      p.appendChild(link);
+    } else {
+      // fallback: just plain text
+      p.appendChild(document.createTextNode(text));
+    }
+  }
+
+  sourceEl.appendChild(p);
+}
 
   // -----------------------------------------------------------
   // Unit Toggle + Ingredient Rendering
@@ -424,11 +547,11 @@
 
     // Fallback to any legacy fields if present
     const qty = ingredient.quantity ?? "";
-    const unit = ingredient.unit ? ` ${ingredient.unit}` : "";
-    const item = ingredient.item || "";
-    return {
-      displayText: `${qty}${unit} ${item}`.trim()
-    };
+      const unit = ingredient.unit ? ` ${ingredient.unit}` : "";
+      const item = ingredient.item || "";
+      return {
+        displayText: `${qty}${unit} ${item}`.trim()
+      };
   }
 
   function renderIngredients(recipe) {

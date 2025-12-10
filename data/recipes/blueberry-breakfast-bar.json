@@ -5,7 +5,10 @@
   "servings": 12,
   "prep_time_minutes": 15,
   "cook_time_minutes": 35,
-  "source": "Website Modification",
+  "source": {
+  "text": "Recipe modified from Sally's Baking Addiction",
+  "url": "https://sallysbakingaddiction.com/baked-oatmeal/#tasty-recipes-66530"
+},
   "tags": [
     "family favorite",
     "healthy"
