@@ -111,7 +111,7 @@ body.theme-fantasy .recipe-section::before {
   pointer-events: none;
 }
 
-/* Fantasy-specific styling for checked ingredients/steps */
+/* Fantasy-specific styling for checked ingredients/steps (the button itself) */
 body.theme-fantasy .is-checked .check-btn {
   background: radial-gradient(
     circle at 30% 0%,
@@ -156,30 +156,25 @@ body.theme-fantasy .is-checked .check-btn .check-icon::before {
   }
 }
 
-/* 🖋 Fantasy ink-style text animation for checked items */
+/* 🖋 Fantasy type-in style text animation for checked items
+   - Relies on .ingredient-text / .step-text being inline-block in base.css
+   - Clip mask reveals text from left to right without changing layout,
+     so no line-wrapping jitter at the edge of the screen. */
 body.theme-fantasy .is-checked .ingredient-text,
 body.theme-fantasy .is-checked .step-text {
-  animation: fantasy-text-ink 260ms ease-out;
+  overflow: hidden;                       /* hide the unrevealed part */
+  will-change: clip-path, opacity, color; /* hint for smoother animation */
+  animation: fantasy-text-type 260ms steps(20, end);
 }
 
-/* Ink “settling” into the page */
-@keyframes fantasy-text-ink {
-  0% {
-    letter-spacing: 0.02em;
+/* Type-in effect: reveal line with a clipping mask */
+@keyframes fantasy-text-type {
+  from {
+    clip-path: inset(0 100% 0 0);   /* fully hidden to the right */
     opacity: 0.7;
-    transform: translateY(-0.5px);
-    text-shadow: none;
   }
-  45% {
-    letter-spacing: 0.06em;
-    opacity: 0.95;
-    transform: translateY(0px);
-    text-shadow: 0 0.5px 0 rgba(59, 47, 47, 0.35);
-  }
-  100% {
-    letter-spacing: 0.02em;
-    opacity: 0.85;
-    transform: translateY(0px);
-    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  to {
+    clip-path: inset(0 0 0 0);      /* fully revealed */
+    opacity: 0.85;                  /* matches the slightly dimmer checked look */
   }
 }

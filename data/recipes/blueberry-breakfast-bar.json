@@ -21,6 +21,10 @@
     "low_sugar": false,
     "high_protein": false
   },
+  "image": {
+  "src": "assets/images/recipes/blueberry-breakfast-bar.jpeg",
+  "alt": "Pan of three blueberry breakfast bars on plate."
+},
   "family_ratings": [
     {
       "name": "Ryan",
