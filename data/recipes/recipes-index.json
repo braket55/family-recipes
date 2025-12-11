@@ -3,6 +3,27 @@
     "id": "blueberry-breakfast-bar",
     "name": "Blueberry Breakfast Bar",
     "category": "breakfast",
-    "tags": ["family favorite", "healthy"]
+    "tags": [
+      "family favorite",
+      "healthy"
+    ]
+  },
+  {
+  "id": "stuffed-shells",
+  "name": "Stuffed Shells",
+  "category": "dinner",
+    "tags": [
+    "family favorite",
+    "thankgiving staple"
+    ]
+  },
+  {
+    "id": "test-2",
+    "name": "Recipe 2 Name Here",
+    "category": "lunch",
+    "tags": [
+      "family favorite",
+      "healthy"
+    ]
   }
 ]

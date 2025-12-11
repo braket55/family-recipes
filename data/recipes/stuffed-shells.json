@@ -1,30 +1,30 @@
 {
-  "id": "blueberry-breakfast-bar",
-  "name": "Blueberry Breakfast Bar",
-  "category": "breakfast",
+  "id": "stuffed-shells",
+  "name": "Stuffed Shells",
+  "category": "dinner",
     "tags": [
     "family favorite",
-    "healthy"
+    "thankgiving staple"
   ],
   "servings": 12,
-  "prep_time_minutes": 15,
-  "cook_time_minutes": 35,
-  "source": "Recipe modified from [Sally's Baking Addiction](https://sallysbakingaddiction.com/baked-oatmeal/#tasty-recipes-66530)",
+  "prep_time_minutes": 40,
+  "cook_time_minutes": 40,
+  "source": "Recipe from parents",
 
   "dietary_flags": {
     "dairy_free": false,
     "gluten_free": false,
-    "vegetarian": true,
+    "vegetarian": false,
     "vegan": false,
-    "nut_free": true,
-    "soy_free": true,
+    "nut_free": false,
+    "soy_free": false,
     "egg_free": false,
     "low_sugar": false,
     "high_protein": false
   },
   "image": {
-  "src": "assets/images/recipes/blueberry-breakfast-bar.jpeg",
-  "alt": "Pan of three blueberry breakfast bars on plate."
+  "src": "assets/images/recipes/no-image-yet.jpeg",
+  "alt": "Pan of note stating that there is no image yet."
 },
   "family_ratings": [
     {
@@ -50,34 +50,34 @@
   ],
   "ingredients": [
     {
-      "item": "Unsweetened applesauce",
+      "item": "Ricotta cheese",
       "type": "wet",
       "amounts": {
         "metric": {
-          "quantity": 113,
+          "quantity": 910,
           "unit": "g"
         },
         "imperial": {
-          "quantity": 4,
+          "quantity": 32,
           "unit": "oz"
         },
-        "kitchen": "1/2 cup Unsweetened applesauce"
+        "kitchen": "2 lb Ricotta cheese"
       },
       "notes": ""
     },
     {
-      "item": "Dried wild blueberries",
-      "type": "dry",
+      "item": "Shredded mozzarella cheese",
+      "type": "wet",
       "amounts": {
         "metric": {
-          "quantity": 140,
+          "quantity": 230,
           "unit": "g"
         },
         "imperial": {
-          "quantity": 5,
+          "quantity": 8,
           "unit": "oz"
         },
-        "kitchen": "3/4 cup Dried wild blueberries"
+        "kitchen": "2 cups Shredded mozzarella cheese"
       },
       "notes": ""
     },

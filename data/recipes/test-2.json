@@ -1,18 +1,17 @@
 {
-  // MUST REMOVE COMMENTS BEFORE USING THIS FILE!
-  "id": "RECIPE-ID-HERE", //must_match_the_filename
-  "name": "Recipe Name Here",
-  "category": "breakfast", //breakfast_lunch_dinner_side_dessert_snack_drink
-  "tags": [
+  "id": "test-2",
+  "name": "Recipe 2 Name Here",
+  "category": "lunch",
+    "tags": [
     "family favorite",
     "healthy"
   ],
   "servings": 0,
   "prep_time_minutes": 0,
   "cook_time_minutes": 0,
-  "source": "", //supports_[text](https://example.com)
+  "source": "",
   "image": {
-    "src": "assets/images/recipes/RECIPE-ID-HERE.jpeg",
+    "src": null,
     "alt": "Short, descriptive alt text for this recipe photo."
   },
 
@@ -71,7 +70,7 @@
     "serving_size": "",
     "macros": {
       "calories": null,
-      "protein": null, //e.g._"5.9_g_-_9%_DV"
+      "protein": null,
       "net_carbs": null,
       "fat": null
     },
