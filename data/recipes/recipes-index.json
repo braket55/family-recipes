@@ -3,27 +3,51 @@
     "id": "blueberry-breakfast-bar",
     "name": "Blueberry Breakfast Bar",
     "category": "breakfast",
-    "tags": [
-      "family favorite",
-      "healthy"
-    ]
+    "tags": ["family favorite", "healthy"],
+    "dietary_flags": {
+      "dairy_free": false,
+      "gluten_free": false,
+      "vegetarian": true,
+      "vegan": false,
+      "nut_free": true,
+      "soy_free": true,
+      "egg_free": false,
+      "low_sugar": false,
+      "high_protein": false
+    }
   },
   {
-  "id": "stuffed-shells",
-  "name": "Stuffed Shells",
-  "category": "dinner",
-    "tags": [
-    "family favorite",
-    "thankgiving staple"
-    ]
+    "id": "stuffed-shells",
+    "name": "Stuffed Shells",
+    "category": "dinner",
+    "tags": ["family favorite", "thankgiving staple"],
+    "dietary_flags": {
+      "dairy_free": false,
+      "gluten_free": false,
+      "vegetarian": false,
+      "vegan": false,
+      "nut_free": false,
+      "soy_free": false,
+      "egg_free": false,
+      "low_sugar": false,
+      "high_protein": false
+    }
   },
   {
     "id": "test-2",
     "name": "Recipe 2 Name Here",
     "category": "lunch",
-    "tags": [
-      "family favorite",
-      "healthy"
-    ]
+    "tags": ["family favorite", "healthy"],
+    "dietary_flags": {
+      "dairy_free": false,
+      "gluten_free": false,
+      "vegetarian": false,
+      "vegan": false,
+      "nut_free": false,
+      "soy_free": false,
+      "egg_free": false,
+      "low_sugar": false,
+      "high_protein": false
+    }
   }
 ]

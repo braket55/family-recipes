@@ -173,19 +173,83 @@
     });
   }
 
+  // --- NEW SEARCH HELPERS (Title + Tags + Dietary + AND/OR) ---
+
+  function formatKey(key) {
+    return String(key)
+      .replace(/_/g, " ")
+      .replace(/-/g, " ")
+      .replace(/\b\w/g, c => c.toUpperCase());
+  }
+
+  // Build one lowercase searchable string per recipe
+  function buildSearchHaystack(recipe) {
+    const parts = [];
+
+    // Title
+    if (recipe && recipe.name) parts.push(String(recipe.name));
+
+    // Category (nice bonus; doesn’t hurt)
+    if (recipe && recipe.category) {
+      parts.push(String(recipe.category));
+      parts.push(formatKey(recipe.category)); // "dinner" -> "Dinner"
+    }
+
+    // Tags
+    if (recipe && Array.isArray(recipe.tags)) {
+      recipe.tags.forEach(t => parts.push(String(t)));
+    }
+
+    // Dietary flags: include ONLY flags that are true
+    if (recipe && recipe.dietary_flags && typeof recipe.dietary_flags === "object") {
+      Object.entries(recipe.dietary_flags).forEach(([key, value]) => {
+        if (value === true) {
+          parts.push(String(key));                 // "gluten_free"
+          parts.push(String(key).replace(/_/g, " ")); // "gluten free"
+          parts.push(formatKey(key));              // "Gluten Free"
+        }
+      });
+    }
+
+    return parts.join(" ").toLowerCase();
+  }
+
+  // Multi-word AND; commas split OR groups
+  // Example: "blueberry healthy, shells" =>
+  //   [ ["blueberry","healthy"], ["shells"] ]
+  function parseQueryToOrGroups(rawQuery) {
+    const q = (rawQuery || "").trim().toLowerCase();
+    if (!q) return [];
+
+    return q
+      .split(",")
+      .map(group => group.trim())
+      .filter(Boolean)
+      .map(group => group.split(/\s+/).map(t => t.trim()).filter(Boolean))
+      .filter(tokens => tokens.length > 0);
+  }
+
+  function matchesQuery(haystack, rawQuery) {
+    const orGroups = parseQueryToOrGroups(rawQuery);
+    if (!orGroups.length) return true;
+
+    // OR over groups; AND within a group
+    return orGroups.some(andTokens => andTokens.every(token => haystack.includes(token)));
+  }
+
   function applyFilters() {
     const searchInput = document.getElementById("search-input");
-    const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+    const query = searchInput ? searchInput.value.trim() : "";
 
     const filtered = allRecipes.filter(recipe => {
+      // Keep your existing category button behavior (for now)
       if (activeCategory !== "all" && recipe.category !== activeCategory) return false;
 
+      // NEW: search across title + tags + dietary + (bonus category),
+      // with spaces=AND and commas=OR
       if (query) {
-        const nameMatch = recipe.name.toLowerCase().includes(query);
-        const tagMatch = Array.isArray(recipe.tags)
-          ? recipe.tags.some(tag => tag.toLowerCase().includes(query))
-          : false;
-        if (!nameMatch && !tagMatch) return false;
+        const haystack = buildSearchHaystack(recipe);
+        if (!matchesQuery(haystack, query)) return false;
       }
 
       return true;
@@ -462,32 +526,32 @@
   }
 
   function renderSource(recipe) {
-  const sourceEl = document.getElementById("recipe-source");
-  if (!sourceEl) return;
+    const sourceEl = document.getElementById("recipe-source");
+    if (!sourceEl) return;
 
-  sourceEl.innerHTML = "";
+    sourceEl.innerHTML = "";
 
-  // No source present
-  if (!recipe.source) {
-    sourceEl.style.display = "none";
-    return;
+    // No source present
+    if (!recipe.source) {
+      sourceEl.style.display = "none";
+      return;
+    }
+
+    sourceEl.style.display = "";
+
+    const p = document.createElement("p");
+
+    const label = document.createElement("strong");
+    label.textContent = "Source: ";
+    p.appendChild(label);
+
+    // Treat source as markdown-capable string
+    const span = document.createElement("span");
+    span.innerHTML = renderRichText(String(recipe.source));
+    p.appendChild(span);
+
+    sourceEl.appendChild(p);
   }
-
-  sourceEl.style.display = "";
-
-  const p = document.createElement("p");
-
-  const label = document.createElement("strong");
-  label.textContent = "Source: ";
-  p.appendChild(label);
-
-  // Treat source as markdown-capable string
-  const span = document.createElement("span");
-  span.innerHTML = renderRichText(String(recipe.source));
-  p.appendChild(span);
-
-  sourceEl.appendChild(p);
-}
 
   // -----------------------------------------------------------
   // Unit Toggle + Ingredient Rendering
@@ -533,12 +597,6 @@
     });
   }
 
-  // ingredient.amounts structure:
-  // {
-  //   "metric":   { "quantity": 414, "unit": "ml" },
-  //   "imperial": { "quantity": 14, "unit": "fl oz" },
-  //   "kitchen":  "1 3/4 cup milk"
-  // }
   function convertIngredientUnits(ingredient, mode) {
     const amounts = ingredient.amounts || {};
 
@@ -588,7 +646,6 @@
 
     if (!Array.isArray(recipe.ingredients)) return;
 
-    // Group by type, but keep original indices
     const dryIngredients = [];
     const wetIngredients = [];
     const otherIngredients = [];
@@ -615,7 +672,6 @@
       const notes = ing.notes ? ` (${ing.notes})` : "";
       const fullText = `${displayText}${notes}`;
 
-      // Check button
       const btn = document.createElement("button");
       btn.className = "check-btn check-btn--circle";
       btn.type = "button";
@@ -626,7 +682,6 @@
       icon.setAttribute("aria-hidden", "true");
       btn.appendChild(icon);
 
-      // Ingredient text (supports [label](url))
       const textSpan = document.createElement("span");
       textSpan.className = "ingredient-text";
       textSpan.innerHTML = renderRichText(fullText);
@@ -645,12 +700,10 @@
       wetList.appendChild(createIngredientLi(entry));
     });
 
-    // If anything has no type / unknown type, put it at the bottom of wet
     otherIngredients.forEach(entry => {
       wetList.appendChild(createIngredientLi(entry));
     });
 
-    // Re-apply saved checked state to ingredients after re-render (e.g. unit change)
     applySavedCheckState();
   }
 
@@ -659,58 +712,57 @@
   // -----------------------------------------------------------
 
   function renderNutritionSection(nutrition) {
-  if (!nutrition || typeof nutrition !== "object") return;
+    if (!nutrition || typeof nutrition !== "object") return;
 
-  const section = document.querySelector('#nutrition-macros')?.closest('.recipe-section');
-  if (!section) return;
+    const section = document.querySelector('#nutrition-macros')?.closest('.recipe-section');
+    if (!section) return;
 
-  // Clear old header if needed
-  const oldHeader = section.querySelector('.nutrition-serving-header');
-  if (oldHeader) oldHeader.remove();
+    const oldHeader = section.querySelector('.nutrition-serving-header');
+    if (oldHeader) oldHeader.remove();
 
-  // Build serving size label
-  const serving = nutrition.serving_size?.trim();
-  const header = document.createElement("p");
-  header.className = "nutrition-serving-header";
-  header.innerHTML = serving
-    ? `<em>Per ${serving}</em>`
-    : `<em>Per serving</em>`;
-  section.insertBefore(header, section.children[1]);
+    const serving = nutrition.serving_size?.trim();
+    const header = document.createElement("p");
+    header.className = "nutrition-serving-header";
+    header.innerHTML = serving
+      ? `<em>Per ${serving}</em>`
+      : `<em>Per serving</em>`;
+    section.insertBefore(header, section.children[1]);
 
-  const groups = [
-    ["nutrition-macros", "Macros", nutrition.macros],
-    ["nutrition-carbs", "Carbohydrates", nutrition.carbohydrates],
-    ["nutrition-vitamins", "Vitamins", nutrition.vitamins],
-    ["nutrition-minerals", "Minerals", nutrition.minerals],
-    ["nutrition-lipids", "Lipids", nutrition.lipids]
-  ];
+    const groups = [
+      ["nutrition-macros", "Macros", nutrition.macros],
+      ["nutrition-carbs", "Carbohydrates", nutrition.carbohydrates],
+      ["nutrition-vitamins", "Vitamins", nutrition.vitamins],
+      ["nutrition-minerals", "Minerals", nutrition.minerals],
+      ["nutrition-lipids", "Lipids", nutrition.lipids]
+    ];
 
-  groups.forEach(([id, title, group]) => {
-    const container = document.getElementById(id);
-    if (!container) return;
+    groups.forEach(([id, title, group]) => {
+      const container = document.getElementById(id);
+      if (!container) return;
 
-    container.innerHTML = "";
+      container.innerHTML = "";
 
-    const entries = group
-      ? Object.entries(group).filter(([_, val]) => val !== null && val !== "")
-      : [];
+      const entries = group
+        ? Object.entries(group).filter(([_, val]) => val !== null && val !== "")
+        : [];
 
-    if (!entries.length) return;
+      if (!entries.length) return;
 
-    const h3 = document.createElement("h3");
-    h3.textContent = title;
-    container.appendChild(h3);
+      const h3 = document.createElement("h3");
+      h3.textContent = title;
+      container.appendChild(h3);
 
-    const ul = document.createElement("ul");
-    entries.forEach(([key, value]) => {
-      const li = document.createElement("li");
-      li.textContent = `${formatKey(key)}: ${value}`;
-      ul.appendChild(li);
+      const ul = document.createElement("ul");
+      entries.forEach(([key, value]) => {
+        const li = document.createElement("li");
+        li.textContent = `${formatNutritionKey(key)}: ${value}`;
+        ul.appendChild(li);
+      });
+      container.appendChild(ul);
     });
-    container.appendChild(ul);
-  });
-}
-  function formatKey(key) {
+  }
+
+  function formatNutritionKey(key) {
     return key.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
   }
 
@@ -810,7 +862,6 @@
   }
 
   function clearCheckState(scope) {
-    // scope: "ingredients" | "steps" | "all"
     const selectors = [];
     if (scope === "ingredients" || scope === "all") {
       selectors.push(".ingredient-item.is-checked");
@@ -826,7 +877,6 @@
       if (btn) btn.setAttribute("aria-pressed", "false");
     });
 
-    // Update stored state to match current UI
     saveCheckState();
   }
 
@@ -843,7 +893,6 @@
     const isChecked = listItem.classList.toggle("is-checked");
     btn.setAttribute("aria-pressed", String(isChecked));
 
-    // Persist the new state
     saveCheckState();
   });
 })();
