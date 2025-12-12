@@ -620,3 +620,212 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* ============================================================
+   Filters Dropdown UI (Index Page)
+   ============================================================ */
+
+.filters-wrap { margin: 0.25rem 0 0.5rem; }
+
+.filters-details summary { list-style: none; }
+.filters-details summary::-webkit-details-marker { display: none; }
+
+.filters-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-elevated);
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+}
+
+.filters-toggle:hover { background: var(--accent-soft); }
+
+.filters-badge {
+  display: none; /* shown by JS */
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface);
+  white-space: nowrap;
+}
+
+.filters-chevron { transition: transform 140ms ease; opacity: 0.9; }
+details[open] .filters-chevron { transform: rotate(180deg); }
+
+.filters-panel {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filters-group { display: flex; flex-direction: column; gap: 10px; }
+
+.filters-group-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.filters-group-header h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.filters-clear,
+.filters-clear-all {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text);
+}
+
+.filters-clear:hover,
+.filters-clear-all:hover {
+  background: var(--accent-soft);
+}
+
+.filters-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.filters-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Make filter buttons look like chips (scoped to filter areas only) */
+#category-filters button.tag,
+#dietary-filters button.tag,
+#tag-filters button.tag {
+  cursor: pointer;
+  border: 1px solid var(--border-subtle);
+  background: var(--chip-bg);
+  color: var(--chip-text);
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  transition: transform 0.1s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+#category-filters button.tag:hover,
+#dietary-filters button.tag:hover,
+#tag-filters button.tag:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+}
+
+#category-filters button.tag.active,
+#dietary-filters button.tag.active,
+#tag-filters button.tag.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.filters-summary {
+  margin: 10px 0 0 0;
+  opacity: 0.9;
+}
+
+/* ============================================================
+   Filter section clear (✕) icon buttons
+   ============================================================ */
+
+.filters-group-header h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Small red clear icon */
+.filters-clear-icon {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: #c0392b; /* muted red */
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 999px;
+  opacity: 0.75;
+}
+
+/* Hover / focus states */
+.filters-clear-icon:hover,
+.filters-clear-icon:focus-visible {
+  opacity: 1;
+  background: rgba(192, 57, 43, 0.12);
+}
+
+/* Active press feedback */
+.filters-clear-icon:active {
+  transform: scale(0.92);
+}
+
+/* Keyboard focus ring */
+.filters-clear-icon:focus-visible {
+  outline: 2px solid rgba(192, 57, 43, 0.6);
+  outline-offset: 2px;
+}
+
+/* ===============================
+   Filters header count + clear X
+   =============================== */
+
+.filters-group h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filters-count {
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+/* Red clear (✕) icon */
+.filters-clear-icon {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: #c0392b;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 999px;
+  opacity: 0.75;
+}
+
+.filters-clear-icon:hover,
+.filters-clear-icon:focus-visible {
+  opacity: 1;
+  background: rgba(192, 57, 43, 0.15);
+}
+
+.filters-clear-icon:active {
+  transform: scale(0.92);
+}
+
+.filters-clear-icon:focus-visible {
+  outline: 2px solid rgba(192, 57, 43, 0.6);
+  outline-offset: 2px;
+}
