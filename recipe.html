@@ -96,6 +96,25 @@
         <section class="recipe-section">
             <h2>Nutrition</h2>
 
+            <!-- Global nutrition disclaimer (not stored in recipe JSON) -->
+            <details id="nutrition-disclaimer" class="nutrition-disclaimer">
+                <summary>
+                    <span class="nutrition-disclaimer-summary">
+                        Nutrition values are estimates. %DV based on a 2,200 kcal diet.
+                    </span>
+                    <span class="nutrition-info-icon" aria-hidden="true">i</span>
+                </summary>
+
+                <div class="nutrition-disclaimer-body">
+                    <p>
+                        Percent Daily Values (%DV) are calculated using a 2,200 kcal per day diet.
+                        Nutrition values are estimated using standard ingredient data and may vary by brand,
+                        preparation, and portion size. This information is provided for general guidance only
+                        and should not be used for medical, diagnostic, or official purposes.
+                    </p>
+                </div>
+            </details>
+
             <div id="nutrition-macros"></div>
             <div id="nutrition-carbs"></div>
             <div id="nutrition-vitamins"></div>
@@ -120,7 +139,7 @@
 
     <footer class="site-footer">
         <p>
-            &copy; 2025 Family Recipe Collection ·
+            &copy; 2025 Our Galactic Grimoire ·
             <a href="about.html">About</a>
         </p>
     </footer>

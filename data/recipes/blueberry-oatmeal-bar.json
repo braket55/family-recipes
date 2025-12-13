@@ -1,16 +1,11 @@
 {
-  "id": "blueberry-breakfast-bar",
-  "name": "Blueberry Breakfast Bar",
+  "id": "blueberry-oatmeal-bar",
+  "name": "Blueberry Oatmeal Bar",
   "category": "breakfast",
-    "tags": [
+  "tags": [
     "family favorite",
     "healthy"
   ],
-  "servings": 12,
-  "prep_time_minutes": 15,
-  "cook_time_minutes": 35,
-  "source": "Recipe modified from [Sally's Baking Addiction](https://sallysbakingaddiction.com/baked-oatmeal/#tasty-recipes-66530)",
-
   "dietary_flags": {
     "dairy_free": false,
     "gluten_free": false,
@@ -22,10 +17,14 @@
     "low_sugar": false,
     "high_protein": false
   },
+  "servings": 12,
+  "prep_time_minutes": 15,
+  "cook_time_minutes": 35,
+  "source": "Recipe modified from [Sally's Baking Addiction](https://sallysbakingaddiction.com/baked-oatmeal/#tasty-recipes-66530)",
   "image": {
-  "src": "assets/images/recipes/blueberry-breakfast-bar.jpeg",
-  "alt": "Pan of three blueberry breakfast bars on plate."
-},
+    "src": "assets/images/recipes/blueberry-breakfast-bar.jpeg",
+    "alt": "Pan of three blueberry breakfast bars on plate."
+  },
   "family_ratings": [
     {
       "name": "Ryan",
@@ -242,6 +241,17 @@
       "notes": "Use chocolate bar and chop into fine chunks"
     }
   ],
+  "steps": [
+    "Adjust oven rack to middle position.",
+    "Preheat oven to 175°C (350°F).",
+    "Spray a 23×33 cm (9×13 inch) pyrex baking pan with non-stick cooking spray.",
+    "Whisk all wet ingredients together in a large bowl.",
+    "Add dry ingredients to the wet mixture and stir until combined.",
+    "Bake for 35 minutes until edges are golden brown and the center is set.",
+    "Let cool for 5 minutes and serve warm, or cool fully (45 minutes) and cut into bars.",
+    "Cut into 12 bars.",
+    "Store in an airtight container in the refrigerator for up to 7 days or freeze for up to 3 months."
+  ],
   "nutrition": {
     "serving_size": "1 bar",
     "macros": {
@@ -256,7 +266,6 @@
       "vitamin_d": "36.4 IU - 6% DV",
       "vitamin_e": "0.2 mg - 1% DV",
       "vitamin_k": "0.4 μg - 0% DV",
-      "vitamin_d": "36.4 μg - 0% DV",
       "b1": "0.1 mg - 9% DV",
       "b2": "0.1 mg - 9% DV",
       "b3": "0.2 mg - 1% DV",
@@ -273,7 +282,7 @@
       "phosphorus": "127.1 mg - 18% DV",
       "potassium": "222.7 mg - 7% DV",
       "selenium": "9.8 μg - 18% DV",
-      "sodium": "109.7.1 mg - 7% DV",
+      "sodium": "109.7 mg - 7% DV",
       "zinc": "1.0 mg - 10% DV"
     },
     "carbohydrates": {
@@ -289,17 +298,6 @@
       "saturated_fat": "3.6 g - 4% DV"
     }
   },
-  "steps": [
-    "Adjust oven rack to middle position.",
-    "Preheat oven to 175°C (350°F).",
-    "Spray a 23×33 cm (9×13 inch) pyrex baking pan with non-stick cooking spray.",
-    "Whisk all wet ingredients together in a large bowl.",
-    "Add dry ingredients to the wet mixture and stir until combined.",
-    "Bake for 35 minutes until edges are golden brown and the center is set.",
-    "Let cool for 5 minutes and serve warm, or cool fully (45 minutes) and cut into bars.",
-    "Cut into 12 bars.",
-    "Store in an airtight container in the refrigerator for up to 7 days or freeze for up to 3 months."
-  ],
   "notes": [
     "These are delicious!"
   ]

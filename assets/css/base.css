@@ -591,6 +591,67 @@ button:active {
   font-size: 1rem;
 }
 
+/* ===============================
+   Nutrition disclaimer (global)
+   =============================== */
+
+.nutrition-disclaimer {
+  margin: 0.4rem 0 0.75rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.9rem;
+  background: var(--surface-elevated);
+  overflow: hidden;
+}
+
+.nutrition-disclaimer summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.55rem 0.75rem;
+  user-select: none;
+}
+
+.nutrition-disclaimer summary::-webkit-details-marker {
+  display: none;
+}
+
+.nutrition-disclaimer-summary {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.nutrition-info-icon {
+  flex-shrink: 0;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface);
+  font-weight: 700;
+  font-size: 0.85rem;
+  opacity: 0.95;
+}
+
+.nutrition-disclaimer[open] summary {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.nutrition-disclaimer-body {
+  padding: 0.65rem 0.75rem;
+}
+
+.nutrition-disclaimer-body p {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
 /* Badges for dietary flags + info badges */
 .badge {
   display: inline-flex;

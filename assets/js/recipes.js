@@ -926,7 +926,17 @@
     const header = document.createElement("p");
     header.className = "nutrition-serving-header";
     header.innerHTML = serving ? `<em>Per ${serving}</em>` : `<em>Per serving</em>`;
-    section.insertBefore(header, section.children[1]);
+    // Insert the "Per serving" line after the disclaimer if present,
+    // otherwise right after the Nutrition h2.
+    const disclaimer = section.querySelector("#nutrition-disclaimer");
+    const h2 = section.querySelector("h2");
+    const anchor = disclaimer || h2;
+
+    if (anchor && anchor.nextSibling) {
+      section.insertBefore(header, anchor.nextSibling);
+    } else {
+      section.appendChild(header);
+    }
 
     const groups = [
       ["nutrition-macros", "Macros", nutrition.macros],

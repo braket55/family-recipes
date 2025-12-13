@@ -1,0 +1,205 @@
+{
+  "id": "corn-souffle",
+  "name": "Corn Souffle",
+  "category": "side",
+  "tags": [
+    "family favorite",
+    "thankgiving staple"
+  ],
+  "dietary_flags": {
+    "dairy_free": false,
+    "gluten_free": false,
+    "vegetarian": true,
+    "vegan": false,
+    "nut_free": false,
+    "soy_free": false,
+    "egg_free": false,
+    "low_sugar": false,
+    "high_protein": false
+  },
+  "servings": 8,
+  "prep_time_minutes": 10,
+  "cook_time_minutes": 55,
+  "source": "Recipe from parents (handwritten card)",
+  "image": {
+    "src": "assets/images/recipes/no-image-yet.jpeg",
+    "alt": "Handwritten recipe card for Corn Souffle."
+  },
+  "family_ratings": [
+    {
+      "name": "Ryan",
+      "stars": 5,
+      "comment": "Classic holiday side dish — always disappears fast."
+    },
+    {
+      "name": "Jess",
+      "stars": 5,
+      "comment": "Creamy, cozy, and perfect with a big dinner."
+    },
+    {
+      "name": "UV",
+      "stars": 0,
+      "comment": "Not chicken or rice. Hiss."
+    },
+    {
+      "name": "Petra",
+      "stars": 1,
+      "comment": "Not bread or paper. Deeply suspicious."
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "Unsalted butter, melted_(*)",
+      "type": "wet",
+      "amounts": {
+        "metric": {
+          "quantity": 113,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 4,
+          "unit": "oz"
+        },
+        "kitchen": "1/2 cup unsalted butter, melted"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Sour cream_(*)",
+      "type": "wet",
+      "amounts": {
+        "metric": {
+          "quantity": 227,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 8,
+          "unit": "oz"
+        },
+        "kitchen": "8 oz sour cream"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Large eggs_(*)",
+      "type": "wet",
+      "amounts": {
+        "metric": {
+          "quantity": 2,
+          "unit": ""
+        },
+        "imperial": {
+          "quantity": 2,
+          "unit": ""
+        },
+        "kitchen": "2 eggs"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Jiffy corn muffin mix",
+      "type": "dry",
+      "amounts": {
+        "metric": {
+          "quantity": 241,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 8.5,
+          "unit": "oz"
+        },
+        "kitchen": "1 box (8.5 oz) Jiffy corn muffin mix"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Canned whole kernel corn, drained",
+      "type": "wet",
+      "amounts": {
+        "metric": {
+          "quantity": 255,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 9,
+          "unit": "oz"
+        },
+        "kitchen": "1 can (about 15 oz) whole kernel corn, drained"
+      },
+      "notes": "Metric/imperial amounts are estimated drained weight."
+    },
+    {
+      "item": "Canned cream-style corn",
+      "type": "wet",
+      "amounts": {
+        "metric": {
+          "quantity": 418,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 14.75,
+          "unit": "oz"
+        },
+        "kitchen": "1 can (14.75 oz) cream-style corn"
+      },
+      "notes": ""
+    }
+  ],
+  "steps": [
+    "Adjust oven rack to middle position.",
+    "Preheat oven to 175°C (350°F).",
+    "In a 1.5 L baking dish, mix all ingredients together until evenly combined.",
+    "Bake at 175°C (350°F) for 50–60 minutes, until set and lightly golden on top.",
+    "Let rest 5–10 minutes before serving."
+  ],
+  "nutrition": {
+    "serving_size": "1 serving",
+    "macros": {
+      "calories": "355 kcal - 16% DV",
+      "protein": "6 g - 12% DV",
+      "net_carbs": "34 g - 12% DV",
+      "fat": "18 g - 23% DV"
+    },
+    "vitamins": {
+      "vitamin_a": "250 μg - 28% DV",
+      "vitamin_c": "6 mg - 7% DV",
+      "vitamin_d": "1.0 μg - 5% DV",
+      "vitamin_e": "1.0 mg - 7% DV",
+      "vitamin_k": "5 μg - 4% DV",
+      "b1": "0.20 mg - 17% DV",
+      "b2": "0.20 mg - 15% DV",
+      "b3": "2.0 mg - 13% DV",
+      "b5": "0.6 mg - 12% DV",
+      "b6": "0.2 mg - 12% DV",
+      "b12": "0.5 μg - 21% DV",
+      "folate": "60 μg - 15% DV"
+    },
+    "minerals": {
+      "calcium": "120 mg - 9% DV",
+      "copper": "0.1 mg - 11% DV",
+      "iron": "1.5 mg - 8% DV",
+      "magnesium": "30 mg - 7% DV",
+      "phosphorus": "150 mg - 12% DV",
+      "potassium": "350 mg - 7% DV",
+      "selenium": "12 μg - 22% DV",
+      "sodium": "650 mg - 28% DV",
+      "zinc": "1.0 mg - 9% DV"
+    },
+    "carbohydrates": {
+      "total_carbs": "36 g - 13% DV",
+      "fiber": "2 g - 7% DV",
+      "sugars": "10 g - No Target",
+      "added_sugars": "5 g - 10% DV"
+    },
+    "lipids": {
+      "cholesterol_mg": "70 mg - 23% DV",
+      "omega-3": "0.2 g - 13% DV",
+      "omega-6": "1.2 g - 7% DV",
+      "saturated_fat": "10 g - 50% DV"
+    }
+  },
+  "notes": [
+    "Baked in a 1.5 L dish at 350°F for 50–60 minutes (per the original card).",
+    "Nutrition values are estimates and will vary by brand (especially the muffin mix and canned corn)."
+  ]
+}

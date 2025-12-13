@@ -1,9 +1,12 @@
 [
   {
-    "id": "blueberry-breakfast-bar",
-    "name": "Blueberry Breakfast Bar",
+    "id": "blueberry-oatmeal-bar",
+    "name": "Blueberry Oatmeal Bar",
     "category": "breakfast",
-    "tags": ["family favorite", "healthy"],
+    "tags": [
+      "family favorite",
+      "healthy"
+    ],
     "dietary_flags": {
       "dairy_free": false,
       "gluten_free": false,
@@ -20,7 +23,10 @@
     "id": "stuffed-shells",
     "name": "Stuffed Shells",
     "category": "dinner",
-    "tags": ["family favorite", "thankgiving staple"],
+    "tags": [
+      "family favorite",
+      "thankgiving staple"
+    ],
     "dietary_flags": {
       "dairy_free": false,
       "gluten_free": false,
@@ -34,14 +40,17 @@
     }
   },
   {
-    "id": "test-2",
-    "name": "Recipe 2 Name Here",
-    "category": "lunch",
-    "tags": ["family favorite", "healthy"],
+    "id": "corn-souffle",
+    "name": "Corn Souffle",
+    "category": "side",
+    "tags": [
+      "family favorite",
+      "thankgiving staple"
+    ],
     "dietary_flags": {
       "dairy_free": false,
       "gluten_free": false,
-      "vegetarian": false,
+      "vegetarian": true,
       "vegan": false,
       "nut_free": false,
       "soy_free": false,

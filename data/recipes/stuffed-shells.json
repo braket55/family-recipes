@@ -2,19 +2,14 @@
   "id": "stuffed-shells",
   "name": "Stuffed Shells",
   "category": "dinner",
-    "tags": [
+  "tags": [
     "family favorite",
     "thankgiving staple"
   ],
-  "servings": 12,
-  "prep_time_minutes": 40,
-  "cook_time_minutes": 40,
-  "source": "Recipe from parents",
-
   "dietary_flags": {
     "dairy_free": false,
     "gluten_free": false,
-    "vegetarian": false,
+    "vegetarian": true,
     "vegan": false,
     "nut_free": false,
     "soy_free": false,
@@ -22,10 +17,14 @@
     "low_sugar": false,
     "high_protein": false
   },
+  "servings": 12,
+  "prep_time_minutes": 40,
+  "cook_time_minutes": 40,
+  "source": "Recipe from parents",
   "image": {
-  "src": "assets/images/recipes/no-image-yet.jpeg",
-  "alt": "Pan of note stating that there is no image yet."
-},
+    "src": "assets/images/recipes/no-image-yet.jpeg",
+    "alt": "Pan of note stating that there is no image yet."
+  },
   "family_ratings": [
     {
       "name": "Ryan",
@@ -50,7 +49,7 @@
   ],
   "ingredients": [
     {
-      "item": "Ricotta cheese",
+      "item": "Ricotta cheese_(*)",
       "type": "wet",
       "amounts": {
         "metric": {
@@ -66,8 +65,8 @@
       "notes": ""
     },
     {
-      "item": "Shredded mozzarella cheese",
-      "type": "wet",
+      "item": "Shredded mozzarella cheese_(*)",
+      "type": "dry",
       "amounts": {
         "metric": {
           "quantity": 230,
@@ -82,23 +81,39 @@
       "notes": ""
     },
     {
-      "item": "Milk",
-      "type": "wet",
+      "item": "Shredded Italian blend cheese_(*)",
+      "type": "dry",
       "amounts": {
         "metric": {
-          "quantity": 414,
-          "unit": "ml"
+          "quantity": 230,
+          "unit": "g"
         },
         "imperial": {
-          "quantity": 14,
-          "unit": "fl oz"
+          "quantity": 8,
+          "unit": "oz"
         },
-        "kitchen": "1 3/4 cup Milk"
+        "kitchen": "2 cups Shredded Italian blend cheese"
       },
       "notes": ""
     },
     {
-      "item": "Large eggs",
+      "item": "Shredded parmesan cheese_(*)",
+      "type": "dry",
+      "amounts": {
+        "metric": {
+          "quantity": 115,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 4,
+          "unit": "oz"
+        },
+        "kitchen": "1 cup Shredded parmesan cheese"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Large eggs_(*)",
       "type": "wet",
       "amounts": {
         "metric": {
@@ -114,55 +129,7 @@
       "notes": ""
     },
     {
-      "item": "Pure maple syrup",
-      "type": "wet",
-      "amounts": {
-        "metric": {
-          "quantity": 120,
-          "unit": "ml"
-        },
-        "imperial": {
-          "quantity": 4,
-          "unit": "fl oz"
-        },
-        "kitchen": "1/2 cup Pure maple syrup"
-      },
-      "notes": ""
-    },
-    {
-      "item": "Unsalted butter",
-      "type": "wet",
-      "amounts": {
-        "metric": {
-          "quantity": 56,
-          "unit": "g"
-        },
-        "imperial": {
-          "quantity": 2,
-          "unit": "oz"
-        },
-        "kitchen": "1/4 cup (1/2 stick) Unsalted butter"
-      },
-      "notes": "Melted and slightly cooled"
-    },
-    {
-      "item": "Whole rolled oats",
-      "type": "dry",
-      "amounts": {
-        "metric": {
-          "quantity": 240,
-          "unit": "g"
-        },
-        "imperial": {
-          "quantity": 8.5,
-          "unit": "oz"
-        },
-        "kitchen": "3 cups Whole rolled oats"
-      },
-      "notes": ""
-    },
-    {
-      "item": "Baking powder",
+      "item": "Parsley_(*)",
       "type": "dry",
       "amounts": {
         "metric": {
@@ -173,133 +140,153 @@
           "quantity": 0.14,
           "unit": "oz"
         },
-        "kitchen": "1 tsp Baking powder"
+        "kitchen": "1 Tbsp Parsley"
       },
-      "notes": ""
+      "notes": "Freshly chopped is best."
     },
     {
-      "item": "Ground cinnamon",
+      "item": "Oregano_(*)",
       "type": "dry",
       "amounts": {
         "metric": {
-          "quantity": 3,
+          "quantity": 4,
           "unit": "g"
         },
         "imperial": {
-          "quantity": 0.11,
+          "quantity": 0.14,
           "unit": "oz"
         },
-        "kitchen": "1 tsp ground cinnamon"
+        "kitchen": "1 Tbsp Oregano"
       },
       "notes": ""
     },
     {
-      "item": "Pure vanilla extract",
+      "item": "Kosher salt_(*)",
+      "type": "dry",
+      "amounts": {
+        "metric": {
+          "quantity": 4,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 0.14,
+          "unit": "oz"
+        },
+        "kitchen": "1 tsp Kosher salt"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Ground Pepper_(*)",
+      "type": "dry",
+      "amounts": {
+        "metric": {
+          "quantity": 4,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 0.14,
+          "unit": "oz"
+        },
+        "kitchen": "1 tsp Ground pepper"
+      },
+      "notes": ""
+    },
+    {
+      "item": "Jumbo pasta shells",
+      "type": "dry",
+      "amounts": {
+        "metric": {
+          "quantity": 510,
+          "unit": "g"
+        },
+        "imperial": {
+          "quantity": 18,
+          "unit": "oz"
+        },
+        "kitchen": "1 1/2 Jumbo pasta shells box"
+      },
+      "notes": "1 Box is typically 12 oz dry"
+    },
+    {
+      "item": "Spaghetti Sauce",
       "type": "wet",
       "amounts": {
         "metric": {
-          "quantity": 10,
-          "unit": "ml"
-        },
-        "imperial": {
-          "quantity": 0.34,
-          "unit": "fl oz"
-        },
-        "kitchen": "2 tsp Pure vanilla extract"
-      },
-      "notes": "Add an 'oops' amount if desired"
-    },
-    {
-      "item": "Kosher salt",
-      "type": "dry",
-      "amounts": {
-        "metric": {
-          "quantity": 2,
+          "quantity": 910,
           "unit": "g"
         },
         "imperial": {
-          "quantity": 0.07,
+          "quantity": 32,
           "unit": "oz"
         },
-        "kitchen": "1/4 tsp Kosher salt"
+        "kitchen": "1 Jar Spaghetti Sauce"
       },
-      "notes": ""
-    },
-    {
-      "item": "100% dark chocolate",
-      "type": "dry",
-      "amounts": {
-        "metric": {
-          "quantity": 56,
-          "unit": "g"
-        },
-        "imperial": {
-          "quantity": 2,
-          "unit": "oz"
-        },
-        "kitchen": "2 oz finely chopped 100% dark chocolate"
-      },
-      "notes": "Use chocolate bar and chop into fine chunks"
+      "notes": "We prefer the 32 oz jar of Rao's tomato basil"
     }
+  ],
+  "steps": [
+    "Cook jumbo pasta shells according to box.",
+    "Adjust oven rack to middle position.",
+    "Preheat oven to 175°C (350°F).",
+    "Spray a 23×33 cm (9×13 inch) pyrex baking pan with non-stick cooking spray.",
+    "Whisk wet_(*) ingredients together in a large bowl.",
+    "Add dry_(*) ingredients to the wet mixture and stir until combined.",
+    "Add some pasta sauce to empty pyrex baking pan enough to cover the base.",
+    "Fill cooked and slighly cooled shells with about 2 Tbsp cheese mixture and begin first layer of shells in pyrex pan.",
+    "Add some more pasta sauce to the top of the first layer of stuffed shells in pan.",
+    "Continute to make another layer of stuffed shells in pan.",
+    "Add layer of pasta sauce on top of 2nd layer of stuffed shells in pan.",
+    "Cover pan with aluminum foil.",
+    "Bake for 35-40 minutes.",
+    "Let cool for 5 minutes and serve warm, or cool fully (45 minutes) and seal in airtight containers.",
+    "Store cooled shells in an airtight container in the refrigerator for up to 7 days."
   ],
   "nutrition": {
     "serving_size": "3 shells",
     "macros": {
-      "calories": "233 kcal - 9% DV",
-      "protein": "5.9 g - 3% DV",
-      "net_carbs": "42.3 g - 24% DV",
-      "fat": "7.4 g - 9% DV"
+      "calories": "410 kcal - 21% DV",
+      "protein": "19 g - 38% DV",
+      "net_carbs": "39 g - 14% DV",
+      "fat": "20 g - 26% DV"
     },
     "vitamins": {
-      "vitamin_a": "29.9 μg - 3% DV",
-      "vitamin_c": "5.0 mg - 6% DV",
-      "vitamin_d": "36.4 IU - 6% DV",
-      "vitamin_e": "0.2 mg - 1% DV",
-      "vitamin_k": "0.4 μg - 0% DV",
-      "vitamin_d": "36.4 μg - 0% DV",
-      "b1": "0.1 mg - 9% DV",
-      "b2": "0.1 mg - 9% DV",
-      "b3": "0.2 mg - 1% DV",
-      "b5": "0.3 mg - 7% DV",
-      "b6": "0.0 mg - 2% DV",
-      "b12": "0.3 μg - 11% DV",
-      "folate": "10.2 μg - 3% DV"
+      "vitamin_a": "210 μg - 23% DV",
+      "vitamin_c": "6 mg - 7% DV",
+      "vitamin_d": "1.4 μg - 7% DV",
+      "vitamin_e": "0.6 mg - 4% DV",
+      "vitamin_k": "12 μg - 10% DV",
+      "b1": "0.18 mg - 15% DV",
+      "b2": "0.35 mg - 27% DV",
+      "b3": "2.6 mg - 16% DV",
+      "b5": "0.9 mg - 18% DV",
+      "b6": "0.15 mg - 9% DV",
+      "b12": "1.1 μg - 46% DV",
+      "folate": "85 μg - 21% DV"
     },
     "minerals": {
-      "calcium": "100.6 mg - 10% DV",
-      "copper": "0.1 mg - 9% DV",
-      "iron": "1.2 mg - 15% DV",
-      "magnesium": "24.5 mg - 6% DV",
-      "phosphorus": "127.1 mg - 18% DV",
-      "potassium": "222.7 mg - 7% DV",
-      "selenium": "9.8 μg - 18% DV",
-      "sodium": "109.7.1 mg - 7% DV",
-      "zinc": "1.0 mg - 10% DV"
+      "calcium": "380 mg - 29% DV",
+      "iron": "2.3 mg - 13% DV",
+      "magnesium": "45 mg - 11% DV",
+      "phosphorus": "420 mg - 34% DV",
+      "potassium": "480 mg - 10% DV",
+      "selenium": "18 μg - 33% DV",
+      "sodium": "680 mg - 30% DV",
+      "zinc": "2.2 mg - 20% DV"
     },
     "carbohydrates": {
-      "total_carbs": "36.6 g - 27% DV",
-      "fiber": "3.2 g - 8% DV",
-      "sugars": "28.0 g - No Target",
-      "added_sugars": "13.8 g - 28% DV"
+      "total_carbs": "42 g - 15% DV",
+      "fiber": "3 g - 11% DV",
+      "sugars": "6 g - No Target",
+      "added_sugars": "2 g - 4% DV"
     },
     "lipids": {
-      "cholesterol_mg": "41.8 mg - 21% DV",
-      "omega-3": "0.1 g - 2% DV",
-      "omega-6": "0.5 g - 3% DV",
-      "saturated_fat": "3.6 g - 4% DV"
+      "cholesterol_mg": "95 mg - 32% DV",
+      "saturated_fat": "10 g - 50% DV",
+      "omega-3": "0.2 g - 13% DV",
+      "omega-6": "0.6 g - 4% DV"
     }
   },
-  "steps": [
-    "Adjust oven rack to middle position.",
-    "Preheat oven to 175°C (350°F).",
-    "Spray a 23×33 cm (9×13 inch) pyrex baking pan with non-stick cooking spray.",
-    "Whisk all wet ingredients together in a large bowl.",
-    "Add dry ingredients to the wet mixture and stir until combined.",
-    "Bake for 35 minutes until edges are golden brown and the center is set.",
-    "Let cool for 5 minutes and serve warm, or cool fully (45 minutes) and cut into bars.",
-    "Cut into 12 bars.",
-    "Store in an airtight container in the refrigerator for up to 7 days or freeze for up to 3 months."
-  ],
   "notes": [
     "These are delicious!"
   ]
