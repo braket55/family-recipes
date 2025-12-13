@@ -12,112 +12,97 @@
 </head>
 
 <body class="theme-scifi">
-<header class="site-header">
-    <div class="header-inner">
-        <a class="home-icon" href="index.html">🏠✨</a>
-        <h1>Family Recipe Collection</h1>
-        <button id="theme-toggle">Switch Theme</button>
-    </div>
-</header>
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="home-icon" href="index.html">🏠✨</a>
+            <h1>Family Recipe Collection</h1>
+            <button id="theme-toggle">Switch Theme</button>
+        </div>
+    </header>
 
-<main>
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-        <ol>
-            <li class="breadcrumb-item" aria-current="page">
-                <a href="index.html">Home</a>
-            </li>
-        </ol>
-    </nav>
+    <main>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol>
+                <li class="breadcrumb-item" aria-current="page">
+                    <a href="index.html">Home</a>
+                </li>
+            </ol>
+        </nav>
 
-    <!-- Search -->
-    <section class="search-section">
-        <input
-            type="text"
-            id="search-input"
-            placeholder="Search recipes…"
-            aria-label="Search recipes">
-    </section>
+        <!-- Search -->
+        <section class="search-section">
+            <input type="text" id="search-input" placeholder="Search recipes…" aria-label="Search recipes">
+        </section>
 
-    <!-- Filters -->
-    <section class="filters-wrap" aria-label="Filters">
-        <details id="filters-panel" class="filters-details">
-            <summary class="filters-toggle">
-                <span aria-hidden="true">☰</span>
-                <span>Filters</span>
-                <span id="filters-badge" class="filters-badge"></span>
-                <span aria-hidden="true">▾</span>
-            </summary>
+        <!-- Filters -->
+        <section class="filters-wrap" aria-label="Filters">
+            <details id="filters-panel" class="filters-details">
+                <summary class="filters-toggle">
+                    <span aria-hidden="true">☰</span>
+                    <span>Filters</span>
+                    <span id="filters-badge" class="filters-badge"></span>
+                    <span aria-hidden="true">▾</span>
+                </summary>
 
-            <div class="filters-panel">
+                <div class="filters-panel">
 
-                <!-- Category -->
-                <div class="filters-group">
-                    <h2>
-                        Category
-                        <span id="category-count" class="filters-count">(0)</span>
-                        <button
-                            id="clear-category-btn"
-                            type="button"
-                            class="filters-clear-icon"
-                            aria-label="Clear Category filters"
-                            title="Clear Category filters"
-                        >✕</button>
-                    </h2>
-                    <div id="category-filters" class="filters-chips"></div>
+                    <!-- Category -->
+                    <div class="filters-group">
+                        <h2>
+                            Category
+                            <span id="category-count" class="filters-count">(0)</span>
+                            <button id="clear-category-btn" type="button" class="filters-clear-icon"
+                                aria-label="Clear Category filters" title="Clear Category filters">✕</button>
+                        </h2>
+                        <div id="category-filters" class="filters-chips"></div>
+                    </div>
+
+                    <!-- Dietary -->
+                    <div class="filters-group">
+                        <h2>
+                            Dietary
+                            <span id="dietary-count" class="filters-count">(0)</span>
+                            <button id="clear-dietary-btn" type="button" class="filters-clear-icon"
+                                aria-label="Clear Dietary filters" title="Clear Dietary filters">✕</button>
+                        </h2>
+                        <div id="dietary-filters" class="filters-chips"></div>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="filters-group">
+                        <h2>
+                            Tags
+                            <span id="tags-count" class="filters-count">(0)</span>
+                            <button id="clear-tags-btn" type="button" class="filters-clear-icon"
+                                aria-label="Clear Tag filters" title="Clear Tag filters">✕</button>
+                        </h2>
+                        <div id="tag-filters" class="filters-chips"></div>
+                    </div>
+
+                    <div class="filters-footer">
+                        <button id="clear-all-filters-btn" type="button">
+                            Clear All Filters
+                        </button>
+                    </div>
                 </div>
+            </details>
 
-                <!-- Dietary -->
-                <div class="filters-group">
-                    <h2>
-                        Dietary
-                        <span id="dietary-count" class="filters-count">(0)</span>
-                        <button
-                            id="clear-dietary-btn"
-                            type="button"
-                            class="filters-clear-icon"
-                            aria-label="Clear Dietary filters"
-                            title="Clear Dietary filters"
-                        >✕</button>
-                    </h2>
-                    <div id="dietary-filters" class="filters-chips"></div>
-                </div>
+            <p id="active-filters-summary" class="filters-summary"></p>
+        </section>
 
-                <!-- Tags -->
-                <div class="filters-group">
-                    <h2>
-                        Tags
-                        <span id="tags-count" class="filters-count">(0)</span>
-                        <button
-                            id="clear-tags-btn"
-                            type="button"
-                            class="filters-clear-icon"
-                            aria-label="Clear Tag filters"
-                            title="Clear Tag filters"
-                        >✕</button>
-                    </h2>
-                    <div id="tag-filters" class="filters-chips"></div>
-                </div>
+        <!-- Results -->
+        <section id="recipe-list" class="recipe-grid"></section>
+    </main>
 
-                <div class="filters-footer">
-                    <button id="clear-all-filters-btn" type="button">
-                        Clear All Filters
-                    </button>
-                </div>
-            </div>
-        </details>
+    <footer class="site-footer">
+        <p>
+            &copy; 2025 Family Recipe Collection ·
+            <a href="about.html">About</a>
+        </p>
+    </footer>
 
-        <p id="active-filters-summary" class="filters-summary"></p>
-    </section>
-
-    <!-- Results -->
-    <section id="recipe-list" class="recipe-grid"></section>
-</main>
-
-<footer class="site-footer">
-    <p>&copy; 2025 Family Recipe Collection</p>
-</footer>
-
-<script src="assets/js/main.js"></script>
-<script src="assets/js/recipes.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/recipes.js"></script>
 </body>
+
 </html>
