@@ -78,6 +78,38 @@ main {
   opacity: 0.8;
 }
 
+.header-title{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: center;
+  min-width: 0; /* helps with truncation on small screens */
+}
+
+.header-title h1{
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.about-icon{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  line-height: 1;
+  font-size: 1.1rem;
+}
+
+.about-icon:focus{
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
 /* Buttons / Inputs */
 button,
 input,
